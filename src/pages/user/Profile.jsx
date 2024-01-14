@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, useTransform, useAnimation } from 'framer-motion';
 import MotionWrapper from '../../components/navigation/Motion';
 import { User } from '../../../utils/constants';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/ReactToastify.min.css"
 import { UpdateUser } from '../../../services/user/userService';
+import { DeletePost, GetUsersPosts } from '../../../services/post/postService';
+import PostItem from '../../components/discover/PostItem';
+import { clickToCopy } from '../../../utils/helpers';
+import { NewPostButton } from '../../components/discover/Fixed';
 
 const Profile = ({
   email = User.email || '',
@@ -16,6 +20,8 @@ const Profile = ({
 
 }) => {
   const [isEditing, setIsEditing] = useState(false);
+  const [usersPosts, setUsersPosts] = useState([]);
+  const [success, setSuccess] = useState(false);
   const [editedInfo, setEditedInfo] = useState({
     email,
     username,
@@ -23,6 +29,7 @@ const Profile = ({
     bio,
     profilePicture
   });
+  const elementRef = useRef();
 
   const controls = useAnimation();
   const y = useMotionValue(0);
@@ -52,60 +59,109 @@ const Profile = ({
     },2000)
   };
 
+  const handleGetUserPosts = async () => {
+    await GetUsersPosts(setUsersPosts, User._id);
+    console.log("User posts retrieved!!")
+  }
+
+
+  const handleDeletePost = async (postId) => {
+    console.log("User posts retrieved!!")
+    await DeletePost(postId, setSuccess);
+  }
+
 
   const dragConstraints = { top: 0, bottom: 0 };
 
   const opacity = useTransform(y, [-100, 0], [0, 1]);
   const translateY = useTransform(y, [0, 100], ['0%', '100%']);
 
+
+  useEffect(() => {
+    handleGetUserPosts();
+
+  },[])
+
+  useEffect(() => {
+    if(success) {
+      toast.info("Post Deleted")
+    }
+
+  },[success])
+
+
+
+  useEffect(() => {
+    if (elementRef.current) {
+      clickToCopy(elementRef.current);
+    }
+  }, []);
+
   return (
     <MotionWrapper>
       <ToastContainer theme='light' autoClose={1500} position='top-right' closeOnClick/>
 
-      <div className="flex flex-col items-center min-h-screen">
+
+      <div className="flex flex-col min-h-screen mb-[100px]">
+
         <motion.div
           className="max-w-md w-full bg-white overflow-hidden"
           style={{ y }}
           drag="y"
           dragConstraints={dragConstraints}
         >
-          <div className="p-8">
-            <div className="flex items-center justify-center">
-              <img
-                className="w-20 h-20 rounded-full"
-                src={`${User.profilePicture}`}
-                alt="Profile"
-              />
+            <div className="p-4 flex sm:ml-[10%] ml-[10%] lg:ml-[80px] gap-6">
+            <div className="flex items-start justify-center">
+  <img
+  className="w-full md:w-[250px] lg:w-[300px] h-auto md:h-[170px] rounded-md"
+  src={`${User.profilePicture}`}
+  alt="Profile"
+/>
+
+
+
             </div>
-            <div className="mt-4 text-center">
-              <h1 className="text-xl font-semibold">{username}</h1>
-              <p className="text-gray-600">{email}</p>
-            </div>
-            
-            <div className="mt-6 ">
-             <p className="text-gray-700 " >
-                <strong className='text-lg'>Bio: {bio}</strong> 
-              </p>
-              <p className="text-gray-700">
-                <strong>Age:</strong> {age} years
-              </p>
-             
-              <p className="text-gray-700">
-                <strong>Last Sign-in:</strong> {lastSignIn?.toDateString()}
-              </p>
-              <button
-                className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4"
-                onClick={handleEditClick}
-              >
-                Edit Info (endabled)
-              </button>
-            </div>
+            <section>
+                <div className="mt-4">
+                  <h1 ref={elementRef} className="text-md sm:text-sm md:text-md lg:text-3xl  font-semibold">{username}</h1>
+
+                </div>
+                
+                <div className="mt-6">
+                  <button
+                    className="underline px-4 text-sm m:text-sm md:text-sm lg:text-lg  py-2 rounded-lg"
+                    onClick={handleEditClick}
+                  >
+                    Edit Info
+                  </button>
+                </div>
+            </section>
           </div>
+
+          <div>
+            <h1 className="pl-[20%] text-lg text-gray-800 font-semibold">{email}</h1>
+            <h1 className="pl-[20%] text-lg text-gray-800 font-extrabold">{bio}</h1>
+
+          </div>
+
+
         </motion.div>
+
+        <NewPostButton/>
+
+        <div className="lg:px-24 sm:px-10 px-10 mt-4 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-2 md:gap-2 lg:gap-6">
+          {usersPosts.map(post => (
+            <div key={post.id}>
+              <PostItem  key={post._id} author={post.author} title={post.title} img={post.img} content={post.content} createdAt={post.createdAt} updatedAt={post.updatedAt}/>
+            </div>
+
+          ))}
+        </div>
+        
 
         {isEditing && (
           <motion.div
-            className="fixed bottom-0 left-0 right-0 z-50 bg-white p-6 max-w-lg w-full rounded-t-lg shadow-xl"
+            className="fixed bottom-0 left-50 right-0 z-50 bg-white p-6 max-w-lg w-full rounded-lg shadow-xl"
             initial={{ y: '100vh' }}
             animate={controls}
             style={{ opacity, y: translateY }}

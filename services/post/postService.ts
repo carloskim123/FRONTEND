@@ -47,6 +47,54 @@ export const GetPost = async (setPostData, postTitle) => {
     }
 };
 
+export const UpdatePost = async (id, updatedPost) => {
+    try {
+        const response = await fetch(`http://localhost:7000/posts/edit/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${User.authToken}`
+            },
+            body: JSON.stringify(updatedPost)
+        });
+
+        console.log('Response status:', response.status); // Log the HTTP response status
+
+        const data = await response.json();
+        console.log(data);
+        
+        
+
+        if (!response.ok) {
+            throw new Error("post update failed");
+        }
+
+    } catch (error) {
+        console.error('An error occurred while updating post:', error);
+    }
+};
+
+export const GetUsersPosts = async (setUsersPosts, creatorId) => {
+    try {
+        const response = await fetch(`http://localhost:7000/posts/creator/${creatorId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${User.authToken}`
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error("posts retrieval failed");
+        }
+
+        const data = await response.json();
+
+        setUsersPosts(data.posts);
+    } catch (error) {
+        console.error('An error occured while retrieving posts:', error);
+    }
+};
 
 export const NewPost = async (newPostData, setSuccess) => {
     try {
@@ -73,5 +121,32 @@ export const NewPost = async (newPostData, setSuccess) => {
 
     } catch (error) {
         console.error('An error occurred while creating post:', error);
+    }
+};
+
+
+export const DeletePost = async (postToDeleteId, setSuccess) => {
+    try {
+        const response = await fetch(`http://localhost:7000/posts/delete/${postToDeleteId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${User.authToken}`
+            },
+        });
+
+        console.log('Response status:', response.status);
+
+
+        if (response.ok) {
+            setSuccess(true);
+        }
+
+        if (!response.ok) {
+            throw new Error("Post deletion failed");
+        }
+
+    } catch (error) {
+        console.error('An error occurred while deleting post:', error);
     }
 };

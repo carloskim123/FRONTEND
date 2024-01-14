@@ -45,7 +45,7 @@ const NewPostPage: React.FC = () => {
   const initialNewPost: NewPost = {
     title: '',
     content: '',
-    author: '',
+    author: (User.username),
     img: '',
     creatorId: (User._id)
   };
@@ -55,7 +55,12 @@ const NewPostPage: React.FC = () => {
     console.log(values);
     await NewPost(values, setSuccess);
     setPostTitle(values.title); 
+    resetForm();
   };
+
+  const handleCancel = () => {
+    navigate(-1);
+  }
 
 useEffect(() => {
   if (success) {
@@ -101,12 +106,22 @@ useEffect(() => {
                   <ErrorMessage name={field.name} component="div" className="text-red-500 text-sm" />
                 </div>
               ))}
-              <button
+              <div className='flex gap-5'>
+            <button
                 type="submit"
                 className="bg-indigo-700 text-white py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300 w-full"
               >
                 Create Post
               </button>
+              <button
+                onClick={handleCancel}
+                className="bg-red-700 text-white py-2 px-4 rounded-md hover:bg-red-600 transition duration-300 w-full"
+              >
+                Cancel
+              </button>
+                  
+              </div>
+
             </Form>
           )}
         </Formik>

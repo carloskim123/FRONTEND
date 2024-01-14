@@ -12,6 +12,8 @@ import Cookies from 'js-cookie'
 import Logout from "./pages/auth/Logout"
 import SpecUProfile from "./pages/user/SpecUProfile"
 import DisplayUsers from "./pages/user/DisplayUsers"
+import Favorites from "./pages/post/Favorites"
+import EditPost from "./pages/post/EditPost"
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -33,16 +35,17 @@ function App() {
     createRoutesFromElements(
       <Route path="/" Component={Root}>
 
-        {/* Authenticated  Routes*/}
         <Route index Component={Discover} />
         <Route path="/u/profile" element={<Profile/>}/>
         <Route path="/u/:username/profile" element={<SpecUProfile/>}/>
+        <Route path="/u/:username/favorites" element={<Favorites/>}/>
         <Route path="/users" element={<DisplayUsers/>}/>
 
 
-        {/* Post Routes */}
         <Route path="/post/new" element={<NewPostPage/>}/>
         <Route path="/post/:title" element={<PostInDetail/>}/>
+        <Route path="/post/edit/:title" element={<EditPost/>}/>
+
 
         {/* Authenticate */}
         <Route path="/auth/sign-up" Component={SignUpPage}/>

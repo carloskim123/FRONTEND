@@ -1,4 +1,4 @@
-import { Watch } from "react-loader-spinner";
+import { InfinitySpin } from "react-loader-spinner";
 
 export default function Loader() {
     // Define styles for the loader overlay
@@ -27,17 +27,10 @@ export default function Loader() {
         <div className="loader-overlay" style={loaderOverlayStyles}>
             <div style={loaderStyles}>
                 {/* Display a color ring loader */}
-                <Watch
-                    visible={true}
-                    height="80"
-                    width="80"
-                    radius="48"
+                <InfinitySpin
+                    width="200"
                     color="#000"
-                    ariaLabel="watch-loading"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                    />
-                    <div className="mt-6 text-lg">Rendering....</div>
+                />
             </div>
         </div>
     );

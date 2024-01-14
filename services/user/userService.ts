@@ -58,6 +58,8 @@ export const GetUser = async (username, setUserData) => {
 
         setUserData(data.user);
 
+        console.log(data.user._id)
+
     } catch (error) {
         console.error(`Error retrieving user with username: ${username} :`, error);
     }

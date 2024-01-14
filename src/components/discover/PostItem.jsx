@@ -4,9 +4,9 @@ import "react-toastify/ReactToastify.min.css"
 import { Link } from 'react-router-dom';
 import { formatDate } from '../../../utils/helpers';
 
-
 const PostItem = ({ author, title, createdAt, updatedAt, img, content }) => {
   const [showModal, setShowModal] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const openModal = () => {
     setShowModal(true);
@@ -16,14 +16,24 @@ const PostItem = ({ author, title, createdAt, updatedAt, img, content }) => {
     setShowModal(false);
   };
 
-
-
   return (
-    <div  className="cursor-pointer max-w-lg mx-auto bg-white rounded-lg shadow-md overflow-hidden mb-8 relative">
-      <img className="w-full h-64 object-cover" src={img} alt={title} onClick={openModal} />
+    <div
+      className={`cursor-pointer max-w-lg mx-auto bg-white rounded-lg shadow-md overflow-hidden mb-8 relative ${
+        isHovered ? 'hovered' : ''
+      }`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <img
+        className={`w-[600px] h-64 object-cover transform transition-transform duration-300 ease-in-out ${
+          isHovered ? 'hover:scale-105' : ''
+        }`}
+        src={img}
+        alt={title}
+        onClick={openModal}
+      />
       <div className="absolute bottom-0 left-0 bg-gray-900 bg-opacity-50 text-white p-2 w-full transition duration-300 ease-in-out transform hover:translate-y-0">
         <p className="text-sm">posted on: {formatDate(createdAt)}</p>
-        <p className="text-sm">updated on: {formatDate(updatedAt)}</p>
 
         <h2 className="text-lg font-bold cursor-pointer" onClick={openModal}>
           {title}
@@ -32,8 +42,8 @@ const PostItem = ({ author, title, createdAt, updatedAt, img, content }) => {
       </div>
 
       {showModal && (
-        <div onClick={closeModal} className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-[rgba(0,0,0,0.5)] backdrop-blur-[2px] bg-opacity-75 z-50">
-          <div className="bg-white p-6 max-w-lg w-[90%] h-[480px] rounded-lg shadow-xl animate__animated animate__fadeIn fadeIn">
+        <div onClick={closeModal} className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-[rgba(0,0,0,0.5)] backdrop-blur-[2px] bg-opacity-75 z-10">
+          <div className="bg-white p-6 max-w-lg w-[90%] h-[460px] rounded-lg shadow-xl animate__animated animate__fadeIn fadeIn">
             <div className="text-2xl font-semibold mb-4">{title}</div>
             <img className="w-full h-48 object-cover mb-4 rounded-lg" src={img} alt={title} />
             <div className="text-gray-700">
@@ -46,16 +56,13 @@ const PostItem = ({ author, title, createdAt, updatedAt, img, content }) => {
               <button className="bg-blue-500 text-white px-4 py-2 rounded-lg" onClick={closeModal}>
                 Close
               </button>
-              <Link to={"/post/" + title} className="bg-blue-500 text-white px-4 py-2 rounded-lg" >
+              <Link to={"/post/" + title} className="bg-blue-500 text-white px-4 py-2 rounded-lg">
                 See in detail
               </Link>
-   
             </div>
           </div>
         </div>
       )}
-
-
     </div>
   );
 };

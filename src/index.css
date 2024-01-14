@@ -2,11 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --text: #dbf5f2;
+  --background: #051311;
+  --primary: #8edfd9;
+  --secondary: #5f2686;
+  --accent: #d15dc4;
+
+}
 
 * {
-  font-family: Delius;
-  font-weight: bold;
+  font-family: Space Grotesk;
 }
+
+
 
 
 @layer utilities {
@@ -25,6 +34,6 @@
   }
 }
 
-input,textarea {
+input, textarea {
   border: 1px solid black;
 }

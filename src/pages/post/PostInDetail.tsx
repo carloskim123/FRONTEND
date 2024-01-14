@@ -1,14 +1,18 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/ReactToastify.min.css";
-import { GetPost } from '../../../services/post/postService';
+import { DeletePost, GetPost } from '../../../services/post/postService';
 import { User } from '../../../utils/constants';
 import { formatDate } from '../../../utils/helpers'
 
 const PostDetail: React.FC = () => {
   const [post, setPost] = useState(null);
+  const [success, setSuccess] = useState(false);
+
+  const navigate = useNavigate();
+
   const { title } = useParams();
 
   useEffect(() => {
@@ -16,14 +20,16 @@ const PostDetail: React.FC = () => {
     if (foundPost) {
       setPost(foundPost);
     } else {
-      setPost(null); // Post not found
+      setPost(null); 
     }
 
-  
+
+
   }, [title]);
 
   const sharePost = () => {
     alert('Implement your share functionality here');
+    
   };
 
   const savePost = () => {
@@ -40,23 +46,34 @@ const PostDetail: React.FC = () => {
 
  
 
-  const deletePost = () => {
-    // Implement your logic to delete the post here
-    alert('Implement your delete post functionality here');
+  const deletePost = async () => {
+    await DeletePost(post._id, setSuccess);
+
+    setTimeout(() => {
+      navigate('/')
+    },2500)
   };
+
+  useEffect(() => {
+    if(success) {
+      toast.info("Post Deleted successfully")
+    }
+
+  },[success])
 
  
 
   return (
     <div className="container mx-auto mt-8 px-4">
-      <ToastContainer theme='light' autoClose={1000} position='bottom-left'/>
+      <ToastContainer theme='light' autoClose={1000} position='top-left' />
       {post ? (
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 0.5, type: 'spring', stiffness: 150 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2, type: 'easeIn' }}
           className="max-w-3xl mx-auto bg-white rounded-lg overflow-hidden"
         >
+          {post.creatorId == User._id && <div className='mb-2 font-bold italic'>Owned by you</div>}
           <img src={post.img} alt={post.title} onClick={openFromSource} className="w-full h-64 object-cover rounded-t-lg" />
           <div className="p-6">
             <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
@@ -66,13 +83,13 @@ const PostDetail: React.FC = () => {
                 <p className="text-md text-gray-700">Author: {(post.author)}</p>
                 <p className="text-md text-gray-700">Posted on: {formatDate(post.createdAt)}</p>
                 <p className="text-md text-gray-700">Updated on: {formatDate(post.updatedAt)}</p>
-                
+
 
               </div>
-              <div>
+              <div className='flex md:flex-row lg:flex-row sm:flex-col flex-col gap-3'>
                 <button
                   onClick={sharePost}
-                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-4"
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
                 >
                   Share
                 </button>
@@ -82,13 +99,24 @@ const PostDetail: React.FC = () => {
                 >
                   Save
                 </button>
-                {User.email.includes(post.author) && (
+
+                {post.creatorId == User._id && (
+                  <>
                   <button
-                    onClick={deletePost}
-                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ml-4"
+                      onClick={deletePost}
+                      className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                    >
+                      Delete
+                    </button>
+                  
+                  <button
+                    onClick={() => navigate(`/post/edit/${post.title}`)}
+                    className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded"
                   >
-                    Delete
+                    Edit
                   </button>
+                  </>
+
                 )}
               </div>
             </div>

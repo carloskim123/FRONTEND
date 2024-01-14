@@ -24,7 +24,7 @@ const Logout: React.FC = () => {
         setTimeout(() => {
             navigate("/auth/sign-in");
             window.location.reload();
-        },3000)
+        },1000)
       },
     });
 
@@ -69,8 +69,7 @@ const Logout: React.FC = () => {
           </button>
         </div>
       </div>
-      {/* ToastContainer for toast notifications */}
-      <ToastContainer />
+      <ToastContainer theme="light" autoClose={3000} />
     </motion.div>
   );
 };
