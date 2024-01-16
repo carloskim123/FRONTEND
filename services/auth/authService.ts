@@ -27,7 +27,6 @@ export const RegisterUser = async (userData, setAccountCreated, setError, setSuc
 
         setSuccess(data.message)
 
-        console.log(data);
         setAccountCreated(true);
 
     } catch (error) {

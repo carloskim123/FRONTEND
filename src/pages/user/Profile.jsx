@@ -4,11 +4,13 @@ import MotionWrapper from '../../components/navigation/Motion';
 import { User } from '../../../utils/constants';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/ReactToastify.min.css"
-import { UpdateUser } from '../../../services/user/userService';
+import { DelAccount, UpdateUser } from '../../../services/user/userService';
 import { DeletePost, GetUsersPosts } from '../../../services/post/postService';
 import PostItem from '../../components/discover/PostItem';
 import { clickToCopy } from '../../../utils/helpers';
 import { NewPostButton } from '../../components/discover/Fixed';
+
+// DelAccount -> params: none
 
 const Profile = ({
   email = User.email || '',
@@ -112,11 +114,11 @@ const Profile = ({
         >
             <div className="p-4 flex sm:ml-[10%] ml-[10%] lg:ml-[80px] gap-6">
             <div className="flex items-start justify-center">
-  <img
-  className="w-full md:w-[250px] lg:w-[300px] h-auto md:h-[170px] rounded-md"
-  src={`${User.profilePicture}`}
-  alt="Profile"
-/>
+        <img
+        className="w-full md:w-[250px] lg:w-[300px] h-50px md:h-[170px] sm:h-[50px]rounded-md"
+        src={`${User.profilePicture}`}
+        alt="Profile"
+      />
 
 
 
@@ -152,7 +154,7 @@ const Profile = ({
         <div className="lg:px-24 sm:px-10 px-10 mt-4 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-2 md:gap-2 lg:gap-6">
           {usersPosts.map(post => (
             <div key={post.id}>
-              <PostItem  key={post._id} author={post.author} title={post.title} img={post.img} content={post.content} createdAt={post.createdAt} updatedAt={post.updatedAt}/>
+              <PostItem key={post._id} author={post.author} title={post.title} img={post.img} content={post.content} createdAt={post.createdAt} updatedAt={post.updatedAt}/>
             </div>
 
           ))}

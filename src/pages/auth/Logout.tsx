@@ -17,24 +17,22 @@ const Logout: React.FC = () => {
     const username = Cookies.get("username");
    
     // Show toast notification
-    toast.success(`${username} has been logged out!!`, {
-      onClose: () => {
-        Cookies.remove("username")
-        // navigate to sign-in route
-        setTimeout(() => {
-            navigate("/auth/sign-in");
+    toast.success(`${username} has been logged out!!`);
+
+    setTimeout(() => {
+       navigate("/auth/sign-in");
             window.location.reload();
-        },1000)
-      },
-    });
+    }, 1500);
 
       Cookies.remove("authToken");
       Cookies.remove("id");
       Cookies.remove("username");
-        Cookies.remove("email")
-        Cookies.remove("age")
-        Cookies.remove("profilePicture")
-        Cookies.remove("bio");
+      Cookies.remove("email")
+      Cookies.remove("age")
+      Cookies.remove("profilePicture")
+      Cookies.remove("bio");
+
+      localStorage.removeItem("savedPosts")
   };
 
   const handleCancel = () => {
@@ -69,7 +67,7 @@ const Logout: React.FC = () => {
           </button>
         </div>
       </div>
-      <ToastContainer theme="light" autoClose={3000} />
+      <ToastContainer theme="light" autoClose={1000} />
     </motion.div>
   );
 };

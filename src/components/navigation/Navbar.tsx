@@ -78,7 +78,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex flex-row items-center justify-between">
           
 
-        <Link to={"/"} className="text-xl font-semibold flex gap-4 items-center">
+        <Link to={"/"} className="text-xl font-semibold flex gap-4 text-start ">
           <img src={SiteLogo} style={{ width: "30px" }} alt="Logo" />
           <h5>Vinly</h5>
         </Link>

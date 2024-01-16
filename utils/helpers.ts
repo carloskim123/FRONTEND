@@ -1,8 +1,9 @@
-import moment from "moment";
+import moment from 'moment';
 
 export const formatDate = (date: string) => {
-    return moment(date).format('MMMM Do YYYY');
+    return moment(date).fromNow();
 };
+
 
 
 export const clickToCopy = (element: HTMLElement, toast) => {

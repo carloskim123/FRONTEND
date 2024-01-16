@@ -21,7 +21,6 @@ const SpecUProfile = () => {
     try {
       // Fetch user posts
       await GetUsersPosts(setUsersPosts, userData?._id);
-      console.log('User posts retrieved!!');
     } catch (error) {
       console.error('Error fetching user posts:', error);
     }

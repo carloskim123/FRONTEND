@@ -62,7 +62,7 @@ function Discover() {
   }, [liquidAnimationControls]);
 
   return (
-    <MotionWrapper className="min-h-screen lg:ml-20 md:ml-4 sm:ml-0">
+    <MotionWrapper className="min-h-screen lg:m-auto md:mx-auto sm:mx-auto">
       <ToastContainer theme='light' autoClose={1500} position='top-right' closeOnClick/>
 
       <section className="px-4 py-8 relative">
@@ -84,7 +84,7 @@ function Discover() {
             }
           `}
         </style>
-        <h2 className="text- text-5xl font-semibold text-gray-800 mb-12">Latest Posts</h2>
+        <h2 className=" text-5xl font-semibold text-gray-800 mb-12">Latest Posts</h2>
 
         <NewPostButton />
         <RefreshButton handleRefresh={handleRefresh} />

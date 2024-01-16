@@ -86,3 +86,98 @@ export const GetUsers = async (setUsersData) => {
         console.error('Error retrieving users:', error);
     }
 };
+
+export const DelAccount = async () => {
+    try {
+        const response = await fetch(`http://localhost:7000/users/del/${User._id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${User.authToken}`
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error("user deletion failed");
+        }
+
+
+    } catch (error) {
+        console.error('Error deleting user:', error);
+    }
+};
+
+
+
+export const SavePost = async (postId, setMessage) => {
+    try {
+        const response = await fetch(`http://localhost:7000/users/savePost/${User._id}/${postId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${User.authToken}`
+            },
+        });
+
+       
+
+        const data = await response.json();
+
+        if(response.ok) {
+            setMessage(data.message)
+        } else {
+            setMessage(data.message)
+
+        }
+
+
+    } catch (error) {
+        setMessage('Error retrieving users:', error);
+    }
+};
+
+export const GetSavedPosts = async (setMessage, setSavedPosts) => {
+    try {
+        const response = await fetch(`http://localhost:7000/users/savedPosts/${User._id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${User.authToken}`
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error("posts saved retreival failed");
+        }
+
+        const data = await response.json();
+        setSavedPosts(data.savedPosts)
+        setMessage(data.message);
+
+        console.log(data.message)
+    } catch (error) {
+        console.error('Error retrieving users saved posts:', error);
+    }
+};
+
+
+export const RemoveFromSavedPosts = async (postId, setMessage) => {
+    try {
+        const response = await fetch(`http://localhost:7000/users/removeSavedPost/${User._id}/${postId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${User.authToken}`
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error("error while removing from saved");
+        }
+
+        const data = await response.json();
+        setMessage(data.message)
+    } catch (error) {
+        console.error('Error removing from users saved posts:', error);
+    }
+};

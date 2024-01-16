@@ -20,12 +20,21 @@ export const Routes: RouteInterface[] = [
         pathname: "View All Users"
     },
     {
+        path: "/u/saved",
+        pathname: "Saved"
+    },
+     
+    {
         path: "/u/profile",
         pathname: "Profile"
     },
     {
         path: "/auth/logout",
         pathname: "log out"
+    },
+     {
+        path: "/auth/privacy-statement",
+        pathname: "Privacy Policy"
     },
    
 ]

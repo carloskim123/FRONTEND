@@ -61,10 +61,7 @@ export const UpdatePost = async (id, updatedPost) => {
         console.log('Response status:', response.status); // Log the HTTP response status
 
         const data = await response.json();
-        console.log(data);
-        
-        
-
+        return data.message;
         if (!response.ok) {
             throw new Error("post update failed");
         }
@@ -148,5 +145,28 @@ export const DeletePost = async (postToDeleteId, setSuccess) => {
 
     } catch (error) {
         console.error('An error occurred while deleting post:', error);
+    }
+};
+
+export const GetByIds = async (setPosts, postIds) => {
+    try {
+        const response = await fetch('http://localhost:7000/posts/getByIds', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${User.authToken}`
+            },
+            body: JSON.stringify({ postIds: postIds }) // Ensure postIds is wrapped in an object
+        });
+
+        if (!response.ok) {
+            throw new Error('Posts retrieval failed');
+        }
+
+        const data = await response.json();
+
+        setPosts(data.posts);
+    } catch (error) {
+        console.error('An error occurred while retrieving posts:', error);
     }
 };
