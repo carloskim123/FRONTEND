@@ -46,6 +46,13 @@ const Search = () => {
     }, 500); // Adjust the delay as needed
 
     setTypingTimeout(timeout);
+
+    handleSearch();
+    
+    setTimeout(() => {
+    handleSearch();
+      
+    }, 50);
   };
 
   useEffect(() => {
