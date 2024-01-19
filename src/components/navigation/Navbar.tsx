@@ -74,15 +74,12 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-10 backdrop-filter backdrop-blur-md bg-[rgba(255,255,255,0.9)] p-4 shadow">
-      <div className="max-w-7xl mx-auto flex flex-row items-center justify-between">
+    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-10 backdrop-filter backdrop-blur-md bg-[rgba(255,255,255,0.9)] p-4 ">
+      <div className="max-w-full flex">
           
-
-        <Link to={"/"} className="text-xl font-semibold flex gap-4 text-start ">
+        <Link to={"/"} className="text-xl font-semibold flex gap-4 mr-auto ">
           <img src={SiteLogo} style={{ width: "30px" }} alt="Logo" />
-          <h5>Vinly</h5>
         </Link>
-        {/* Mobile Menu Button */}
         <button
           className="block md:hidden text-gray-600 focus:outline-none"
           onClick={toggleMenu}
@@ -128,7 +125,7 @@ const Navbar = () => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg py-2 px-4"
+              className="md:hidden absolute top-full left-0 right-0 bg-black shadow-lg py-2 px-4"
             >
               {filteredRoutes.map((route: RouteType) => (
                 <div onClick={toggleMenu}>

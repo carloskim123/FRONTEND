@@ -10,7 +10,6 @@ const SignUpPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [age, setAge] = useState(0);
-  const [profilePicture, setProfilePicture] = useState('');
   const [error, setError] = useState(null); 
   const [success, setSuccess] = useState(null);
 
@@ -26,7 +25,6 @@ const SignUpPage = () => {
       email,
       password,
       age,
-      profilePicture,
     };
 
     try {
@@ -109,19 +107,12 @@ const SignUpPage = () => {
                 />
               </div>
               <div>
-                <label className="block text-md font-semibold mb-4 mt-3">Profile Picture URL</label>
-                <input
-                  type="text"
-                  className="w-full rounded border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 px-4 py-2"
-                  placeholder="Enter profile picture URL"
-                  value={profilePicture}
-                  onChange={(e) => setProfilePicture(e.target.value)}
-                />
+               
               </div>
             </div>
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white rounded py-2 transition duration-300 hover:bg-blue-600"
+              className="w-full bg-blue-500 dark:text-white rounded py-2 transition duration-300 hover:bg-blue-600"
             >
               Sign Up
             </button>

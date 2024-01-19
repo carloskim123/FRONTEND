@@ -7,7 +7,7 @@ import Modal from 'react-modal';
 import { DeletePost, GetPost } from '../../../services/post/postService';
 import { User } from '../../../utils/constants';
 import { formatDate } from '../../../utils/helpers';
-import { RemoveFromSavedPosts, SavePost } from '../../../services/user/userService';
+import { GetUser, RemoveFromSavedPosts, SavePost } from '../../../services/user/userService';
 
 // Make sure to set appElement to avoid accessibility issues
 Modal.setAppElement('#root');
@@ -17,7 +17,6 @@ const PostDetail: React.FC = () => {
   const [success, setSuccess] = useState(false);
   const [message, setMessage] = useState(null);
 
-
   const navigate = useNavigate();
   const { title } = useParams();
 
@@ -25,7 +24,7 @@ const PostDetail: React.FC = () => {
     GetPost(setPost, title);
   }, [title]);
 
-
+  
 
 
   const savePost = async () => {
@@ -47,6 +46,10 @@ const PostDetail: React.FC = () => {
       
     }    
   };
+
+
+
+
 
 
 
@@ -102,7 +105,7 @@ useEffect(() => {
           className="max-w-3xl mx-auto  bg-white rounded-lg overflow-hidden"
         >
           {post.creatorId === User._id && <div className="mb-2 font-bold italic">Owned by you</div>}
-          <div className='mb-2 text-green-800'><i>Saved posts are now synced to your account</i></div>
+          {post.creatorId != User._id &&  <div className="mb-2 font-bold italic">Owned by {`${post.author}`}</div>}
           <img
             src={post.img}
             alt={post.title}
@@ -121,19 +124,19 @@ useEffect(() => {
               <div className="flex md:flex-row lg:flex-row sm:flex-col flex-col gap-3">
                 <button
                   onClick={copyUrl}
-                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                  className="bg-blue-500 hover:bg-blue-600 dark:text-white font-bold py-2 px-4 rounded"
                 >
                   Url
                 </button>
                 <button
                   onClick={savePost}
-                  className={`bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded`}
+                  className={`bg-yellow-500 hover:bg-yellow-600 dark:text-white font-bold py-2 px-4 rounded`}
                 >
                   Save
                 </button>
                  <button
                   onClick={unSavePost}
-                  className={`bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded`}
+                  className={`bg-blue-500 hover:bg-blue-600 dark:text-white font-bold py-2 px-4 rounded`}
                 >
                   remove
                 </button>
@@ -141,13 +144,13 @@ useEffect(() => {
                   <>
                     <button
                       onClick={deletePost}
-                      className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                      className="bg-red-500 hover:bg-red-600 dark:text-white font-bold py-2 px-4 rounded"
                     >
                       Delete
                     </button>
                     <button
                       onClick={navigateToEdit}
-                      className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded"
+                      className="bg-indigo-500 hover:bg-indigo-600 dark:text-white font-bold py-2 px-4 rounded"
                     >
                       Edit
                     </button>

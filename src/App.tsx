@@ -15,6 +15,7 @@ import DisplayUsers from "./pages/user/DisplayUsers"
 import Favorites from "./pages/post/Favorites"
 import EditPost from "./pages/post/EditPost"
 import PrivacyStatement from "./pages/auth/PrivacyStatement"
+import Search from "./components/search/Search"
 
 /**
  * App is the root component that renders the React Router routes 
@@ -44,23 +45,22 @@ function App() {
     readCookie();
   }, [])
 
+  
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" Component={Root}>
-
+      <Route path="/" Component={Root} >
         <Route index Component={Discover} />
         <Route path="/u/profile" element={<Profile />} />
         <Route path="/u/:username/profile" element={<SpecUProfile />} />
         <Route path="/users" element={<DisplayUsers />} />
-
         <Route path="/u/saved" element={<Favorites />} />
         
-
-
         <Route path="/post/new" element={<NewPostPage />} />
         <Route path="/post/:title" element={<PostInDetail />} />
         <Route path="/post/edit/:title" element={<EditPost />} />
+        <Route path="/posts/search" element={<Search />} />
+
 
 
         {/* Authenticate */}
@@ -68,17 +68,13 @@ function App() {
         <Route path="/auth/sign-in" Component={SignInPage} />
         <Route path="/auth/logout" Component={Logout} />
         <Route path="/auth/privacy-statement" Component={PrivacyStatement} />
-
-
-
-
       </Route>
     )
   )
 
   return (
     <AuthContext.Provider value={{ auth, setAuth, setAccountCreated, accountCreated }}>
-      <RouterProvider router={router} />
+      <RouterProvider  router={router} />
     </AuthContext.Provider>
   )
 }

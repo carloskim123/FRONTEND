@@ -3,6 +3,10 @@ import Cookies from "js-cookie";
 
 
 export const Routes: RouteInterface[] = [
+     {
+        path: "/posts/search",
+        pathname: "Search"
+    },
     {
         path: "/",
         pathname: "Discover"

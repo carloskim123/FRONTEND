@@ -244,13 +244,13 @@ const Profile = ({
                 <div className="flex justify-end">
                   <button
                     type="submit"
-                    className="bg-blue-500 text-white px-4 py-2 rounded-lg mr-2"
+                    className="bg-blue-500 dark:text-white px-4 py-2 rounded-lg mr-2"
                   >
                     Save
                   </button>
                   <button
                     onClick={() => setIsEditing(false)}
-                    className="bg-red-500 text-white px-4 py-2 rounded-lg"
+                    className="bg-red-500 dark:text-white px-4 py-2 rounded-lg"
                   >
                     Cancel
                   </button>

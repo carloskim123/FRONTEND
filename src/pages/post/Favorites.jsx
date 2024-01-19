@@ -29,6 +29,8 @@ export default function Favorites() {
 
       <div>
         <h2 className="text- text-5xl font-semibold text-gray-800 mb-12">Saved Posts</h2>
+          <div className='mb-2 text-green-800 font-bold'><i>Saved posts are now synced to your account</i></div>
+
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-2 md:gap-2 lg:gap-4">
         {savedPosts.length > 0 ? (

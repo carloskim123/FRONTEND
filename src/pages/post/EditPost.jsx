@@ -6,7 +6,7 @@ import { User } from '../../../utils/constants';
 import AuthContext from '../../context/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/ReactToastify.min.css";
-
+import { Toaster } from 'react-hot-toast';
 
 const EditPost = () => {
   const { auth } = useContext(AuthContext)
@@ -57,9 +57,10 @@ const EditPost = () => {
     // Call the UpdatePost service function with updated data
     await UpdatePost(post._id, updatedPost);
 
+
     toast.info("Post updated");
     setTimeout(() => {
-        navigate('/post/' + post.title)
+        navigate(-2)
     }, 1500);
   };
 
@@ -139,13 +140,13 @@ const EditPost = () => {
                 <div className="mb-6 flex gap-5">
                   <button
                     type="submit"
-                    className="bg-indigo-700 text-white py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300 w-full"
+                    className="bg-indigo-700 dark:text-white py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300 w-full"
                   >
                     Update Post
                   </button>
                   <button
                     onClick={() => navigate(-1)}
-                    className="bg-red-700 text-white py-2 px-4 rounded-md hover:bg-red-600 transition duration-300 w-full"
+                    className="bg-red-700 dark:text-white py-2 px-4 rounded-md hover:bg-red-600 transition duration-300 w-full"
                   >
                     Cancel
                   </button>

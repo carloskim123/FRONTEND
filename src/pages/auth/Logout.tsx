@@ -55,7 +55,7 @@ const Logout: React.FC = () => {
         <div className="flex justify-center space-x-4">
           <button
             onClick={handleLogout}
-            className="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+            className="bg-red-500 hover:bg-red-600 dark:text-white font-semibold py-3 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
           >
             Yes, Logout
           </button>

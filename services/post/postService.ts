@@ -19,7 +19,7 @@ export const GetLatestPosts = async (setLatestPosts) => {
 
         setLatestPosts(data.posts);
     } catch (error) {
-        console.error('An error occured while retrieving posts:', error);
+        console.error('An error occured while retrieving latest posts:', error);
     }
 };
 

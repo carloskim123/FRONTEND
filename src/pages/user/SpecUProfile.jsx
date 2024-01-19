@@ -53,7 +53,7 @@ const SpecUProfile = () => {
       <ToastContainer theme="light" autoClose={1500} position="top-right" closeOnClick />
       <button
         onClick={handleGetUserPosts}
-        className="bg-transparent border border-black text-black w-full p-4 rounded-none"
+        className="bg-transparent border border-black light:text-black w-full p-4 rounded-none"
       >
         Get User Posts
       </button>

@@ -52,7 +52,6 @@ const NewPostPage: React.FC = () => {
 
   const handleSubmit = async (values: NewPost, { resetForm }) => {
     // Handle submission logic, e.g., sending data to an API
-    console.log(values);
     await NewPost(values, setSuccess);
     setPostTitle(values.title); 
     resetForm();
@@ -109,13 +108,13 @@ useEffect(() => {
               <div className='flex gap-5'>
             <button
                 type="submit"
-                className="bg-indigo-700 text-white py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300 w-full"
+                className="bg-indigo-700 dark:text-white py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300 w-full"
               >
                 Create Post
               </button>
               <button
                 onClick={handleCancel}
-                className="bg-red-700 text-white py-2 px-4 rounded-md hover:bg-red-600 transition duration-300 w-full"
+                className="bg-red-700 dark:text-white py-2 px-4 rounded-md hover:bg-red-600 transition duration-300 w-full"
               >
                 Cancel
               </button>
