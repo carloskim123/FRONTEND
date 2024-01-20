@@ -1,22 +1,29 @@
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState, useRef, useContext } from "react";
-import { Routes } from "../../../utils/constants";
+import React, { useEffect, useState, useRef, useContext } from "react";
+import { Routes, User } from "../../../utils/constants";
 import { motion, AnimatePresence } from "framer-motion";
 import SiteLogo from "../../../public/vite.svg";
 import AuthContext from "../../context/AuthContext";
+import Avatar from "./Avatar";
+import { NewPostButton } from "../discover/Fixed";
 
 type RouteType = {
   path: string;
   pathname: string;
 };
 
-const NavLink = ({ route }: { route: RouteType }) => {
+type NavLinkProps = {
+  route: RouteType;
+  closeMenu: (event: React.MouseEvent<HTMLElement>) => void;
+};
+
+const NavLink: React.FC<NavLinkProps> = ({ route, closeMenu }) => {
   const location = useLocation();
   const isActive = location.pathname === route.path;
 
-
   return (
     <motion.li
+      onClick={closeMenu}
       whileHover={{ cursor: "pointer" }}
       className={`text-lg transition duration-300 cursor-pointer pt-[15px] ${
         isActive ? "text-gray-900 underline font-bold" : "font-bold text-gray-600"
@@ -26,6 +33,7 @@ const NavLink = ({ route }: { route: RouteType }) => {
     </motion.li>
   );
 };
+
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -73,10 +81,11 @@ const Navbar = () => {
     };
   }, []);
 
+
   return (
     <nav ref={navRef} className="fixed top-0 left-0 right-0 z-10 backdrop-filter backdrop-blur-md bg-[rgba(255,255,255,0.9)] p-4 ">
       <div className="max-w-full flex">
-          
+
         <Link to={"/"} className="text-xl font-semibold flex gap-4 mr-auto ">
           <img src={SiteLogo} style={{ width: "30px" }} alt="Logo" />
         </Link>
@@ -121,31 +130,42 @@ const Navbar = () => {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.ul
-            
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="md:hidden absolute top-full left-0 right-0 bg-black shadow-lg py-2 px-4"
+              className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg py-2 px-4"
             >
               {filteredRoutes.map((route: RouteType) => (
-                <div onClick={toggleMenu}>
-                  <NavLink key={route.path} route={route} />
+                <div key={route.path}>
+                  <NavLink closeMenu={closeMenu} key={route.path} route={route} />
                 </div>
-
               ))}
+              {auth && <div className="flex gap-1 mt-2">
+                <Avatar />
+                {/* Styled username */}
+                <Link to={'/u/profile'}className="text-gray-600 font-bold mx-2 mt-3">{`Hey, ${User.username}`}</Link>
+              </div>}
             </motion.ul>
           )}
         </AnimatePresence>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-6">
+        <ul className="hidden md:flex space-x-6 items-center">
           {filteredRoutes.map((route: RouteType) => (
-            <NavLink key={route.path} route={route} />
+            <div key={route.path}>
+              <NavLink closeMenu={closeMenu} key={route.path} route={route} />
+            </div>
           ))}
+          {auth && <div className="flex gap-1 items-center">
+            <Avatar />
+            {/* Styled username */}
+            <Link to={'/u/profile'} className="text-gray-600 font-bold mx-2 mt-3">{`Hey, ${User.username}`}</Link>
+          </div>}
         </ul>
       </div>
     </nav>
   );
+
 };
 
 export default Navbar;

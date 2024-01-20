@@ -8,6 +8,7 @@ import { GetLatestPosts } from '../../../services/post/postService';
 import AuthContext from '../../context/AuthContext';
 import PostItem from '../../components/discover/PostItem';
 import { NewPostButton, RefreshButton } from '../../components/discover/Fixed';
+import { Greeting } from '../../components/discover/Greeting';
 
 function Discover() {
   const { auth } = useContext(AuthContext);
@@ -84,8 +85,7 @@ function Discover() {
             }
           `}
         </style>
-        <h2 className=" text-5xl font-semibold text-gray-800 mb-12">Latest Posts</h2>
-
+        <Greeting/>
         <NewPostButton />
         <RefreshButton handleRefresh={handleRefresh} />
 

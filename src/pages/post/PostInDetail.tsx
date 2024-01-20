@@ -96,7 +96,7 @@ useEffect(() => {
 
   return (
     <div className="container mx-auto mt-8 px-2">
-      <ToastContainer theme="light" autoClose={1000} position="top-left" />
+      <ToastContainer theme="light" autoClose={3000} position="top-left" />
       {post ? (
         <motion.div
           initial={{ opacity: 0, y: 20 }}

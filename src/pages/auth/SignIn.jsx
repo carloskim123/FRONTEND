@@ -10,7 +10,8 @@ const SignInPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null); 
-  const [success, setSuccess] = useState(null); 
+  const [success, setSuccess] = useState(null);
+  const [loggingIn, setLoggingIn] = useState(false); // New state for tracking login status
 
   const { setAuth, auth } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -24,42 +25,46 @@ const SignInPage = () => {
     };
 
     try {
+      setLoggingIn(true); // Set loggingIn to true when starting login process
       await LoginUser(userData, setAuth, setError, setSuccess);
     } catch (error) {
       // Handle login error: Display error message to the user
       setError(error.message || 'An error occurred during sign-in');
+    } finally {
+      setLoggingIn(false); // Set loggingIn to false when login process is complete
     }
   };
 
-
-
   useEffect(() => {
-    
     if (auth) {
-      setTimeout(() => {
-        navigate("/");
-      },1000)
+      // Simulate a loading delay before navigating
+      navigate("/");
     }
 
-    if(error) {
+    if (error) {
       toast.error(error);
-      setError(null)
+      setError(null);
     }
 
     if (success) {
       toast.success(success);
       setSuccess(null);
     }
-  }, [auth, error,success, navigate]);
+  }, [auth, error, success, navigate]);
 
   return (
     <MotionWrapper>
       <ToastContainer theme='light' autoClose={1500} position='top-right' closeOnClick/>
 
-      <div className="flex w-full justify-center min-h-screen bg-cover bg-center bg-blur">
+      {/* Blurred background with dynamic text */}
+      <div className={`flex w-full justify-center min-h-screen bg-cover bg-center bg-blur ${loggingIn ? 'bg-opacity-50' : ''}`}>
         <div className="rounded-lg p-8 autofill w-[500px]">
-          <h2 className="text-3xl font-bold mb-6 text-center">Sign In</h2>
-       
+          {loggingIn ? (
+            <h2 className="text-3xl font-bold mb-6 text-center">Logging In...</h2>
+          ) : (
+            <h2 className="text-3xl font-bold mb-6 text-center">Sign In</h2>
+          )}
+
           <form className="space-y-12" onSubmit={handleSignIn}>
             <div className="flex flex-col space-y-2">
               <div>

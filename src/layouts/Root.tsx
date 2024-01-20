@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../components/navigation/Navbar";
 import { Suspense,  useEffect, useState } from "react";
 import Loader from "../components/navigation/Loader";
+import Footer from "../components/navigation/Footer";
 
 const OutletComponent = () => {
   return (
@@ -26,10 +27,10 @@ function Root() {
   return (
     <>
         <Navbar/>
-        
           <Suspense fallback={<Loader />}>
               {isLoading ? <Loader /> : <OutletComponent/> }
-            </Suspense>
+          </Suspense>
+        <Footer />
     </>
   )
 }
