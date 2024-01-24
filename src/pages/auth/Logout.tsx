@@ -21,7 +21,7 @@ const Logout: React.FC = () => {
 
     setTimeout(() => {
        navigate("/auth/sign-in");
-            window.location.reload();
+        window.location.reload();
     }, 1500);
 
       Cookies.remove("authToken");
@@ -47,7 +47,7 @@ const Logout: React.FC = () => {
       transition={{ duration: 0.5 }}
       className="min-h-screen flex justify-center bg-gray-100"
     >
-      <div className="max-w-md w-full rounded-lg p-8">
+      <div className="max-w-md w-full rounded-none-lg p-8">
         <h1 className="text-3xl font-bold mb-6 text-center">Logout</h1>
         <p className="mb-8 text-center text-gray-600">
           Are you sure you want to logout?
@@ -55,12 +55,12 @@ const Logout: React.FC = () => {
         <div className="flex justify-center space-x-4">
           <button
             onClick={handleLogout}
-            className="bg-red-500 hover:bg-red-600 dark:text-white font-semibold py-3 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+            className="bg-red-500 hover:bg-red-600 dark:text-white font-semibold py-3 px-6 rounded-none-lg focus:outline-none focus:ring-2 focus:ring-red-500"
           >
             Yes, Logout
           </button>
           <button
-            className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-3 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
+            className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-3 px-6 rounded-none-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
             onClick={handleCancel}
           >
             Cancel

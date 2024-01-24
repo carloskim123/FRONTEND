@@ -1,4 +1,4 @@
-import { InfinitySpin } from "react-loader-spinner";
+import { TailSpin as InfinitySpin } from "react-loader-spinner";
 
 export default function Loader() {
     // Define styles for the loader overlay
@@ -28,7 +28,8 @@ export default function Loader() {
             <div style={loaderStyles}>
                 {/* Display a color ring loader */}
                 <InfinitySpin
-                    width="200"
+                    width="50"
+                    height="50"
                     color="#000"
                 />
             </div>

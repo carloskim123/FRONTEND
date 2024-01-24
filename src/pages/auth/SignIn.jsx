@@ -37,8 +37,10 @@ const SignInPage = () => {
 
   useEffect(() => {
     if (auth) {
-      // Simulate a loading delay before navigating
-      navigate("/");
+       setTimeout(() => {
+          navigate("/");
+          window.location.reload();
+        }, 10);
     }
 
     if (error) {
@@ -58,7 +60,7 @@ const SignInPage = () => {
 
       {/* Blurred background with dynamic text */}
       <div className={`flex w-full justify-center min-h-screen bg-cover bg-center bg-blur ${loggingIn ? 'bg-opacity-50' : ''}`}>
-        <div className="rounded-lg p-8 autofill w-[500px]">
+        <div className="rounded-none-lg p-8 autofill w-[500px]">
           {loggingIn ? (
             <h2 className="text-3xl font-bold mb-6 text-center">Logging In...</h2>
           ) : (
@@ -74,7 +76,7 @@ const SignInPage = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   autoComplete='username'
-                  className="w-full rounded focus:border-blue-500 focus:ring focus:ring-blue-200 px-4 py-2"
+                  className="w-full rounded-none focus:border-blue-500 focus:ring focus:ring-blue-200 px-4 py-2"
                   placeholder="Enter your email"
                 />
               </div>
@@ -85,14 +87,14 @@ const SignInPage = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   autoComplete='current-password'
-                  className="w-full rounded border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 px-4 py-2"
+                  className="w-full rounded-none border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 px-4 py-2"
                   placeholder="Enter your password"
                 />
               </div>
             </div>
             <button
               type="submit"
-              className="w-full bg-blue-500 dark:text-white rounded py-2 transition duration-300 hover:bg-blue-600"
+              className="w-full bg-blue-500 dark:text-white rounded-none py-2 transition duration-300 hover:bg-blue-600"
             >
               Sign In
             </button>

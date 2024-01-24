@@ -99,7 +99,19 @@ export const DelAccount = async () => {
 
         if (!response.ok) {
             throw new Error("user deletion failed");
+        } else {
+            Cookies.remove("authToken");
+            Cookies.remove("id");
+            Cookies.remove("username");
+            Cookies.remove("email")
+            Cookies.remove("age")
+            Cookies.remove("profilePicture")
+            Cookies.remove("bio");
+
+            window.location.replace("http://localhost:5173/auth/sign-up");
         }
+
+            
 
 
     } catch (error) {

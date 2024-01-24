@@ -68,7 +68,7 @@ const SignUpPage = () => {
                 <input
                   type="text"
                   autoComplete='username'
-                  className="w-full rounded border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 px-4 py-2"
+                  className="w-full rounded-none border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 px-4 py-2"
                   placeholder="Enter your username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
@@ -79,7 +79,7 @@ const SignUpPage = () => {
                 <input
                   type="email"
                   autoComplete='email'
-                  className="w-full rounded border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 px-4 py-2"
+                  className="w-full rounded-none border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 px-4 py-2"
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -90,7 +90,7 @@ const SignUpPage = () => {
                 <input
                   type="password"
                   autoComplete='current-password'
-                  className="w-full rounded border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 px-4 py-2"
+                  className="w-full rounded-none border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 px-4 py-2"
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -100,7 +100,7 @@ const SignUpPage = () => {
                 <label className="block text-md font-semibold mb-4 mt-3">Age</label>
                 <input
                   type="number"
-                  className="w-full rounded border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 px-4 py-2"
+                  className="w-full rounded-none border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 px-4 py-2"
                   placeholder="Enter your age"
                   value={age}
                   onChange={(e) => setAge(parseInt(e.target.value))}
@@ -112,7 +112,7 @@ const SignUpPage = () => {
             </div>
             <button
               type="submit"
-              className="w-full bg-blue-500 dark:text-white rounded py-2 transition duration-300 hover:bg-blue-600"
+              className="w-full bg-blue-500 dark:text-white rounded-none py-2 transition duration-300 hover:bg-blue-600"
             >
               Sign Up
             </button>

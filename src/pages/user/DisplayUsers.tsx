@@ -22,9 +22,9 @@ function DisplayUsers() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4">
       {usersData.map((user) => (
-        <Link to={`/u/${user.username}/profile`} key={user._id} className="bg-white rounded shadow-md p-4">
+        <Link to={`/u/${user.username}`} key={user._id} className="bg-white rounded-none shadow-md p-4">
           <img
-            className="w-20 h-20 rounded-full mx-auto mb-2 hover:cursor-pointer"
+            className="w-20 h-20 rounded-none-full mx-auto mb-2 hover:cursor-pointer"
             src={user.profilePicture}
             alt={`Profile ${user.username}`}
 

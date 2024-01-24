@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../components/navigation/Navbar";
 import { Suspense,  useEffect, useState } from "react";
 import Loader from "../components/navigation/Loader";
-import Footer from "../components/navigation/Footer";
+
 
 const OutletComponent = () => {
   return (
@@ -13,15 +13,15 @@ const OutletComponent = () => {
 }
 
 function Root() {
-
   const [isLoading, setIsLoading] = useState(true);
-
 
   useEffect(() => {
     setTimeout(() => {
+     
       setIsLoading(false);
-    },1000);
+    },2000);
 
+    
   })
 
   return (
@@ -30,7 +30,7 @@ function Root() {
           <Suspense fallback={<Loader />}>
               {isLoading ? <Loader /> : <OutletComponent/> }
           </Suspense>
-        <Footer />
+        {/* <Footer /> */}
     </>
   )
 }

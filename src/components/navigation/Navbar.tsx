@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import SiteLogo from "../../../public/vite.svg";
 import AuthContext from "../../context/AuthContext";
 import Avatar from "./Avatar";
-import { NewPostButton } from "../discover/Fixed";
 
 type RouteType = {
   path: string;

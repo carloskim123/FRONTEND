@@ -30,9 +30,9 @@ const Footer = () => {
         <input
           type="email"
           placeholder="Your email"
-          className="p-2 mt-2 mx-2 border rounded focus:outline-none focus:border-black text-black"
+          className="p-2 mt-2 mx-2 border rounded-none focus:outline-none focus:border-black text-black"
         />
-        <button className="bg-black text-white px-4 py-2 mt-2 rounded hover:bg-gray-800">
+        <button className="bg-black text-white px-4 py-2 mt-2 rounded-none hover:bg-gray-800">
           Subscribe
         </button>
         <p className="text-sm mt-4">© {new Date().getFullYear()} Vinly</p>

@@ -53,7 +53,7 @@ const SpecUProfile = () => {
       <ToastContainer theme="light" autoClose={1500} position="top-right" closeOnClick />
       <button
         onClick={handleGetUserPosts}
-        className="bg-transparent border border-black light:text-black w-full p-4 rounded-none"
+        className="bg-transparent border border-black light:text-black w-full p-4 rounded-none-none"
       >
         Get User Posts
       </button>
@@ -67,7 +67,7 @@ const SpecUProfile = () => {
         <div className="p-4 flex sm:ml-[10%] ml-[10%] lg:ml-[80px] gap-6">
           <div className="flex items-start justify-center">
             <img
-              className="w-full md:w-[150px] h-[130px] md:h-[130px] rounded-none "
+              className="w-full md:w-[150px] h-[130px] md:h-[130px] rounded-none-none "
               src={`${userData?.profilePicture}`}
               alt="Profile"
             />

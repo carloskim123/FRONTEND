@@ -66,7 +66,7 @@ const EditPost = () => {
 
 
   return (
-    <div className="container mx-auto mt-8 px-4">
+    <div className="w-screen-lg container mx-auto mt-8 px-4">
       <ToastContainer theme='light' autoClose={1000} position='top-left' />
 
       {showMask ? (
@@ -85,7 +85,7 @@ const EditPost = () => {
               onSubmit={(e) => updatePost(e)}
               className="max-w-md mx-auto"
             >
-              <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-1 gap-2">
                 <div className="mb-4">
                   <label htmlFor="title" className="block text-gray-700 text-sm font-bold mb-2">
                     Title
@@ -96,7 +96,7 @@ const EditPost = () => {
                     name="title"
                     value={updatedPost.title || post.title}
                     onChange={(e) => handleChange('title', e.target.value)}
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline transition-all duration-300"
+                    className="shadow appearance-none border rounded-none w-full py-[15px] px-[20px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline transition-all duration-300"
                   />
                 </div>
                 <div className="mb-4">
@@ -108,7 +108,7 @@ const EditPost = () => {
                     name="content"
                     value={updatedPost.content || post.content}
                     onChange={(e) => handleChange('content', e.target.value)}
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:ring-indigo-500 focus:border-indigo-500 resize-none transition-all duration-300 h-[150px] overflow-auto"
+                    className="shadow appearance-none border rounded-none w-full py-[15px] px-[20px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:ring-indigo-500 focus:border-indigo-500 resize-none transition-all duration-300 h-[150px] overflow-auto"
                   />
                 </div>
                 <div className="mb-4">
@@ -121,7 +121,7 @@ const EditPost = () => {
                     name="author"
                     value={updatedPost.author || post.author}
                     onChange={(e) => handleChange('author', e.target.value)}
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline transition-all duration-300"
+                    className="shadow appearance-none border rounded-none w-full py-[15px] px-[20px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline transition-all duration-300"
                   />
                 </div>
                 <div className="mb-4">
@@ -134,19 +134,19 @@ const EditPost = () => {
                     name="img"
                     value={updatedPost.img || post.img}
                     onChange={(e) => handleChange('img', e.target.value)}
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline transition-all duration-300"
+                    className="shadow appearance-none border rounded-none w-full py-[15px] px-[20px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline transition-all duration-300"
                   />
                 </div>
                 <div className="mb-6 flex gap-5">
                   <button
                     type="submit"
-                    className="bg-indigo-700 dark:text-white py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300 w-full"
+                    className="bg-indigo-700 dark:text-white py-2 px-4 rounded-none-md hover:bg-indigo-600 transition duration-300 w-full"
                   >
                     Update Post
                   </button>
                   <button
-                    onClick={() => navigate(-1)}
-                    className="bg-red-700 dark:text-white py-2 px-4 rounded-md hover:bg-red-600 transition duration-300 w-full"
+                    onClick={() => navigate(`/post/${post.title}`)}
+                    className="bg-red-700 dark:text-white py-2 px-4 rounded-none-md hover:bg-red-600 transition duration-300 w-full"
                   >
                     Cancel
                   </button>

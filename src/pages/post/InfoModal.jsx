@@ -9,7 +9,7 @@ const InfoModal = ({ onClose }) => {
           Your saved posts are not persistent between sessions due to backend security measures.
         </p>
         <button
-          className="mt-4 bg-blue-500 dark:text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="mt-4 bg-blue-500 dark:text-white px-4 py-2 rounded-none hover:bg-blue-700"
           onClick={onClose}
         >
           Close

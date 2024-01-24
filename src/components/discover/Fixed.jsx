@@ -29,7 +29,7 @@ export const NewPostButton = () => {
           animate={liquidAnimationControls}
           whileHover={{ scale: 1.1, boxShadow: '0px 0px 20px rgba(255, 255, 255, 0.2)' }}
           whileTap={{ scale: 0.9 }}
-          className='fixed bottom-10 right-10 text-white p-4 rounded-md overflow-hidden shadow-md z-50'
+          className='fixed bottom-10 right-10 text-white p-4 rounded-none-md overflow-hidden shadow-md z-50'
         >
           New Post 
         </motion.button>
@@ -64,7 +64,7 @@ export const RefreshButton = ({ handleRefresh }) => {
         animate={liquidAnimationControls}
         whileHover={{ scale: 1.1, boxShadow: '0px 0px 20px rgba(255, 255, 255, 0.2)' }}
         whileTap={{ scale: 0.9 }}
-        className='fixed bottom-10 sm:w-[ right-[170px] text-white p-4 rounded-md overflow-hidden shadow-md z-50'
+        className='fixed bottom-10 sm:w-[ right-[170px] text-white p-4 rounded-none-md overflow-hidden shadow-md z-50'
         onClick={handleRefresh}
       >
         Refresh 🌊

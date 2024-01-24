@@ -7,11 +7,11 @@ export function Greeting() {
   let greetingMessage = "";
 
   if (hours >= 5 && hours < 12) {
-    greetingMessage = `Good morning, ${User.username} 👋🏾`;
+    greetingMessage = `Good morning, ${User.username} 🌅`;
   } else if (hours >= 12 && hours < 18) {
-    greetingMessage = `Good afternoon, ${User.username} 👋🏾`;
+    greetingMessage = `Good afternoon, ${User.username} 🌄`;
   } else {
-    greetingMessage = `Good evening, ${User.username} 👋🏾`;
+    greetingMessage = `Good evening, ${User.username} 🌃`;
   }
 
   return (

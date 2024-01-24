@@ -6,7 +6,7 @@ export default function Welcome() {
   return (
     <div className="fixed top-0 right-0 p-4 flex items-center">
       <div className="text-xl font-medium">Good Morning, {username}</div>
-      <div className="ml-6 rounded-full overflow-hidden">
+      <div className="ml-6 rounded-none-full overflow-hidden">
         <img className="w-10 h-10" src={profilePicUrl} alt="Profile" />
       </div>
     </div>

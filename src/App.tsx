@@ -16,6 +16,12 @@ import Favorites from "./pages/post/Favorites"
 import EditPost from "./pages/post/EditPost"
 import PrivacyStatement from "./pages/auth/PrivacyStatement"
 import Search from "./components/search/Search"
+import DeleteAccount from "./pages/user/DeleteAccount"
+import LastResort from "./pages/user/LastResort"
+import EditProfileForm from "./pages/user/EditProfileForm"
+import EditSuccess from "./pages/user/EditSuccess"
+import LoginSuccessPage from "./pages/auth/LoginSuccess"
+import StateAllocated from "./pages/auth/StateAllocated"
 
 /**
  * App is the root component that renders the React Router routes 
@@ -51,23 +57,31 @@ function App() {
     createRoutesFromElements(
       <Route path="/" Component={Root} >
         <Route index Component={Discover} />
+        {/* User */}
         <Route path="/u/profile" element={<Profile />} />
-        <Route path="/u/:username/profile" element={<SpecUProfile />} />
+        <Route path="/u/profile/edit" element={<EditProfileForm  />} />
+        <Route path="/u/profile/edit-success" element={<EditSuccess  />} />
+
+
+        <Route path="/u/:username" element={<SpecUProfile />} />
         <Route path="/users" element={<DisplayUsers />} />
         <Route path="/u/saved" element={<Favorites />} />
-        
+        <Route path="/u/delete-account" element={<DeleteAccount />} />
+        <Route path="/u/last-resort" element={<LastResort />} />
+        {/* Posts */}
         <Route path="/post/new" element={<NewPostPage />} />
         <Route path="/post/:title" element={<PostInDetail />} />
         <Route path="/post/edit/:title" element={<EditPost />} />
         <Route path="/posts/search" element={<Search />} />
 
-
-
-        {/* Authenticate */}
+        {/* Auth */}
         <Route path="/auth/sign-up" Component={SignUpPage} />
         <Route path="/auth/sign-in" Component={SignInPage} />
         <Route path="/auth/logout" Component={Logout} />
         <Route path="/auth/privacy-statement" Component={PrivacyStatement} />
+        <Route path="/auth/login-success" Component={LoginSuccessPage} />
+        <Route path="/auth/state-allocated" Component={StateAllocated} />
+
       </Route>
     )
   )

@@ -1,4 +1,4 @@
-// Discover.js
+// src\pages\casual\Discover.tsx
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAnimation } from 'framer-motion';

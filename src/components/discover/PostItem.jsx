@@ -32,7 +32,7 @@ const PostItem = ({ author, title, createdAt, updatedAt, img, content }) => {
 
   return (
     <div
-      className={`cursor-pointer max-w-lg mx-auto bg-white rounded-lg shadow-md overflow-hidden mb-8 relative ${
+      className={`cursor-pointer max-w-lg mx-auto bg-white rounded-none-none shadow-md overflow-hidden mb-8 relative ${
         isHovered ? 'hovered' : ''
       }`}
       onMouseEnter={() => setIsHovered(true)}
@@ -57,9 +57,9 @@ const PostItem = ({ author, title, createdAt, updatedAt, img, content }) => {
 
       {showModal && (
         <div onClick={closeModal} className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-[rgba(0,0,0,0.5)] backdrop-blur-[2px] bg-opacity-75 z-50">
-          <div className="bg-white p-6 max-w-lg w-[90%] h-[460px] rounded-lg shadow-xl animate__animated animate__fadeIn fadeIn">
+          <div className="bg-white p-6 w-[90%] h-[440px] max-w-[450px] rounded-none-none shadow-xl animate__animated animate__fadeIn fadeIn">
             <div className="text-2xl font-semibold mb-4">{title}</div>
-            <img className="w-full h-48 object-cover mb-4 rounded-lg" src={img} alt={title} />
+            <img className="w-full h-48 object-cover mb-4 rounded-none-none" src={img} alt={title} loading='lazy' />
             <div className="text-gray-700">
               <div>
                 <span className="font-semibold">Author:</span> {author}
@@ -67,10 +67,10 @@ const PostItem = ({ author, title, createdAt, updatedAt, img, content }) => {
               <div className="mt-2">{renderShortenedContent()}</div>
             </div>
             <div className="mt-4 flex justify-baseline gap-3">
-              <button className="bg-blue-500 text-white px-4 py-2 rounded-lg" onClick={closeModal}>
+              <button className="bg-blue-500 text-white px-4 py-2 rounded-none-none" onClick={closeModal}>
                 Close
               </button>
-              <Link to={"/post/" + title} className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+              <Link to={"/post/" + title} className="bg-blue-500 text-white px-4 py-2 rounded-none-none">
                 See in detail
               </Link>
             </div>

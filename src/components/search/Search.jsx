@@ -78,13 +78,13 @@ const Search = () => {
             type="text"
             value={searchQuery}
             onChange={handleInputChange}
-            className="py-2 px-4 border border-gray-500 rounded-md focus:outline-none focus:border-black flex-grow"
+            className="py-2 px-4 border border-gray-500 rounded-none-md focus:outline-none focus:border-black flex-grow"
             placeholder="Search..."
           />
           <select
             value={searchCategory}
             onChange={(e) => setSearchCategory(e.target.value)}
-            className="ml-4 py-2 px-4 border border-gray-500 rounded-md focus:outline-none focus:border-black"
+            className="ml-4 py-2 px-4 border border-gray-500 rounded-none-md focus:outline-none focus:border-black"
           >
             <option value="posts">Posts</option>
           </select>
@@ -92,7 +92,7 @@ const Search = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={handleClear}
-            className="ml-4 bg-gray-300 text-gray-700 py-2 px-4 rounded-md"
+            className="ml-4 bg-gray-300 text-gray-700 py-2 px-4 rounded-none-md"
           >
             Clear
           </motion.button>
@@ -102,27 +102,22 @@ const Search = () => {
       {/* Results Display */}
       <section className="mt-[50px]">
         <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-2 md:gap-2 lg:gap-4 ">
-          {results.length > 0  && (
-            results.map((item) => (
-              // Render PostItem or UserItem based on the selected category
-                <PostItem
-                  key={item._id}
-                  author={item.author}
-                  title={item.title}
-                  img={item.img}
-                  content={item.content}
-                  createdAt={item.createdAt}
-                  updatedAt={item.updatedAt}
-                />
-            ))
-          )}
-          
+          {results.map((item) => (
+            // Render PostItem or UserItem based on the selected category
+            <PostItem
+              key={item._id}
+              author={item.author}
+              title={item.title}
+              img={item.img}
+              content={item.content}
+              createdAt={item.createdAt}
+              updatedAt={item.updatedAt}
+            />
+          ))}
         </div>
-        {results.length == 0 && searchQuery && (
-            <div className="text-2xl">0 results matching :  '{searchQuery}'</div>
-          )}
-
-      
+        {results.length === 0 && searchQuery && (
+          <div className="text-2xl">0 results matching: '{searchQuery}'</div>
+        )}
       </section>
     </div>
   );

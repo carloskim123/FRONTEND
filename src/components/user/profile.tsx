@@ -52,17 +52,17 @@ const EditSheet: React.FC<EditSheetProps> = ({
                     value={editedData[field.name]}
                     onChange={handleInputChange}
                     placeholder={field.placeholder || ''}
-                    className="w-full border-gray-300 rounded-md p-2 mt-1"
+                    className="w-full border-gray-300 rounded-none-md p-2 mt-1"
                   />
                 </div>
               ))}
               <div className="flex justify-end mt-4">
-                <button type="submit" className="bg-blue-500 dark:text-white px-4 py-2 rounded-lg mr-2">
+                <button type="submit" className="bg-blue-500 dark:text-white px-4 py-2 rounded-none-lg mr-2">
                   Save
                 </button>
                 <button
                   onClick={onClose}
-                  className="bg-red-500 dark:text-white px-4 py-2 rounded-lg"
+                  className="bg-red-500 dark:text-white px-4 py-2 rounded-none-lg"
                 >
                   Cancel
                 </button>

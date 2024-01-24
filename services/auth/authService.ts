@@ -71,7 +71,6 @@ export const LoginUser = async (credentials, setAuth, setError, setSuccess) => {
         Cookies.set("profilePicture", data.user.profilePicture, { expires: 5 })
         Cookies.set("bio", data.user.bio, { expires: 5 })
 
-        window.location.reload();
 
     } catch (error) {
         console.error('Error logging in:', error);
