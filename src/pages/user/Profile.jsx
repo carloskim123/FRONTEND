@@ -80,7 +80,7 @@ const Profile = ({
                 >
                   Logout
                 </button>
-               
+
               </div>
             </section>
           </div>
@@ -97,7 +97,7 @@ const Profile = ({
             ))}
           </div>
         ) : (
-          <div className='mt-[3rem] text-2xl text-center font-bold'>{User.username} has no posts</div>
+          <div className='mt-[3rem] text-2xl text-center font-bold'>You haven't posted anything yet</div>
         )}
 
 

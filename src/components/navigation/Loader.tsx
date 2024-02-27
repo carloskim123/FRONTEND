@@ -1,4 +1,4 @@
-import {  RotatingSquare } from "react-loader-spinner";
+import { ThreeDots } from "react-loader-spinner";
 
 export default function Loader() {
     // Define styles for the loader overlay
@@ -12,7 +12,7 @@ export default function Loader() {
         justifyContent: "center", // Center horizontally
         alignItems: "center", // Center vertically
         zIndex: 9999,
-        backdropFilter: "blur(12px)", // Apply a blur effect
+        backdropFilter: "blur(90px)", // Apply a blur effect
         backgroundColor: "rgba(255, 255, 255, 0.6)", // Optional: semi-transparent overlay
     };
 
@@ -27,7 +27,7 @@ export default function Loader() {
         <div className="loader-overlay" style={loaderOverlayStyles}>
             <div style={loaderStyles}>
                 {/* Display a color ring loader */}
-                <RotatingSquare
+                <ThreeDots
                     visible={true}
                     height="100"
                     width="100"

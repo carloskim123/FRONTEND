@@ -1,4 +1,4 @@
-import { Route, RouterProvider, ScrollRestoration, createMemoryRouter, createRoutesFromElements } from "react-router-dom"
+import { Route, RouterProvider,  createMemoryRouter, createRoutesFromElements } from "react-router-dom"
 import Root from "./layouts/Root"
 import Discover from "./pages/casual/Discover"
 import SignUpPage from "./pages/auth/SignUp"
@@ -57,7 +57,6 @@ function App() {
   const router = createMemoryRouter(
     createRoutesFromElements(
       <Route path="/" Component={Root} >
-        {/* <ScrollRestoration /> */}
 
         <Route index Component={Discover} />
         {/* User */}
