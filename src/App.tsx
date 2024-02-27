@@ -1,4 +1,4 @@
-import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom"
+import { Route, RouterProvider, ScrollRestoration, createMemoryRouter, createRoutesFromElements } from "react-router-dom"
 import Root from "./layouts/Root"
 import Discover from "./pages/casual/Discover"
 import SignUpPage from "./pages/auth/SignUp"
@@ -22,6 +22,7 @@ import EditProfileForm from "./pages/user/EditProfileForm"
 import EditSuccess from "./pages/user/EditSuccess"
 import LoginSuccessPage from "./pages/auth/LoginSuccess"
 import StateAllocated from "./pages/auth/StateAllocated"
+import Updates from "./pages/updates/Updates"
 
 /**
  * App is the root component that renders the React Router routes 
@@ -51,17 +52,18 @@ function App() {
     readCookie();
   }, [])
 
-  
 
-  const router = createBrowserRouter(
+
+  const router = createMemoryRouter(
     createRoutesFromElements(
       <Route path="/" Component={Root} >
+        {/* <ScrollRestoration /> */}
+
         <Route index Component={Discover} />
         {/* User */}
         <Route path="/u/profile" element={<Profile />} />
-        <Route path="/u/profile/edit" element={<EditProfileForm  />} />
-        <Route path="/u/profile/edit-success" element={<EditSuccess  />} />
-
+        <Route path="/u/profile/edit" element={<EditProfileForm />} />
+        <Route path="/u/profile/edit-success" element={<EditSuccess />} />
 
         <Route path="/u/:username" element={<SpecUProfile />} />
         <Route path="/users" element={<DisplayUsers />} />
@@ -82,13 +84,16 @@ function App() {
         <Route path="/auth/login-success" Component={LoginSuccessPage} />
         <Route path="/auth/state-allocated" Component={StateAllocated} />
 
+        {/* Updates */}
+        <Route path="/updates" Component={Updates} />
+
       </Route>
     )
   )
 
   return (
     <AuthContext.Provider value={{ auth, setAuth, setAccountCreated, accountCreated }}>
-      <RouterProvider  router={router} />
+      <RouterProvider router={router} />
     </AuthContext.Provider>
   )
 }

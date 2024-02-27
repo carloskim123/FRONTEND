@@ -10,7 +10,7 @@ const SignUpPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [age, setAge] = useState(0);
-  const [error, setError] = useState(null); 
+  const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
 
   const { setAccountCreated, accountCreated } = useContext(AuthContext)
@@ -28,9 +28,7 @@ const SignUpPage = () => {
     };
 
     try {
-        await RegisterUser(userData, setAccountCreated,setError, setSuccess);
-
-    
+      await RegisterUser(userData, setAccountCreated, setError, setSuccess);
     } catch (error) {
       console.error('Error registering user:', error);
     }
@@ -40,10 +38,10 @@ const SignUpPage = () => {
       toast.info(success)
       setTimeout(() => {
         navigate("/auth/sign-in");
-      },2000)
+      }, 2000)
     }
 
-    if(error) {
+    if (error) {
       toast.error(error);
       setError(null)
     }
@@ -56,7 +54,7 @@ const SignUpPage = () => {
 
   return (
     <MotionWrapper>
-      <ToastContainer theme='light' autoClose={1500} position='top-right' closeOnClick/>
+      <ToastContainer theme='light' autoClose={1500} position='top-right' closeOnClick />
 
       <div className="flex w-full justify-center min-h-screen bg-cover bg-center bg-blur-lg">
         <div className="bg-white p-8 w-[500px]">
@@ -67,7 +65,6 @@ const SignUpPage = () => {
                 <label className="block text-md font-semibold mb-4 mt-3">Username</label>
                 <input
                   type="text"
-                  autoComplete='username'
                   className="w-full rounded-none border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 px-4 py-2"
                   placeholder="Enter your username"
                   value={username}
@@ -78,7 +75,6 @@ const SignUpPage = () => {
                 <label className="block text-md font-semibold mb-4 mt-3">Email</label>
                 <input
                   type="email"
-                  autoComplete='email'
                   className="w-full rounded-none border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 px-4 py-2"
                   placeholder="Enter your email"
                   value={email}
@@ -89,7 +85,6 @@ const SignUpPage = () => {
                 <label className="block text-md font-semibold mb-4 mt-3">Password</label>
                 <input
                   type="password"
-                  autoComplete='current-password'
                   className="w-full rounded-none border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 px-4 py-2"
                   placeholder="Enter your password"
                   value={password}
@@ -107,7 +102,7 @@ const SignUpPage = () => {
                 />
               </div>
               <div>
-               
+
               </div>
             </div>
             <button

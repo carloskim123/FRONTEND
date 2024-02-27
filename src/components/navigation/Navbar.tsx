@@ -24,9 +24,8 @@ const NavLink: React.FC<NavLinkProps> = ({ route, closeMenu }) => {
     <motion.li
       onClick={closeMenu}
       whileHover={{ cursor: "pointer" }}
-      className={`text-lg transition duration-300 cursor-pointer pt-[15px] ${
-        isActive ? "text-gray-900 underline font-bold" : "font-bold text-gray-600"
-      }`}
+      className={`text-lg transition duration-300 cursor-pointer pt-[15px] ${isActive ? "text-gray-900 underline font-bold" : "font-bold text-gray-600"
+        }`}
     >
       <Link to={route.path}>{route.pathname}</Link>
     </motion.li>
@@ -139,11 +138,11 @@ const Navbar = () => {
                   <NavLink closeMenu={closeMenu} key={route.path} route={route} />
                 </div>
               ))}
-              {auth && <div className="flex gap-1 mt-2">
-                <Avatar />
+              {(auth && User.profilePicture && User.username) ? <div className="flex gap-1 mt-2">
                 {/* Styled username */}
-                <Link to={'/u/profile'}className="text-gray-600 font-bold mx-2 mt-3">{`Hey, ${User.username}`}</Link>
-              </div>}
+                <Avatar />
+                <Link to={'/u/profile'} className="text-gray-600 font-bold mx-2 mt-3">{`Hey, ${User.username}`}</Link>
+              </div> : <div></div>}
             </motion.ul>
           )}
         </AnimatePresence>
@@ -155,11 +154,13 @@ const Navbar = () => {
               <NavLink closeMenu={closeMenu} key={route.path} route={route} />
             </div>
           ))}
-          {auth && <div className="flex gap-1 items-center">
-            <Avatar />
-            {/* Styled username */}
-            <Link to={'/u/profile'} className="text-gray-600 font-bold mx-2 mt-3">{`Hey, ${User.username}`}</Link>
-          </div>}
+          {(auth && User.profilePicture && User.username) && (
+            <div className="flex gap-1 mt-2">
+              <Avatar />
+
+              <Link to={'/u/profile'} className="text-gray-600 font-bold mx-2 mt-3">{`Hey, ${User.username}`}</Link>
+            </div>
+          )}
         </ul>
       </div>
     </nav>

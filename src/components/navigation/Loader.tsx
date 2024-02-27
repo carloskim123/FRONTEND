@@ -1,4 +1,4 @@
-import { TailSpin as InfinitySpin } from "react-loader-spinner";
+import {  RotatingSquare } from "react-loader-spinner";
 
 export default function Loader() {
     // Define styles for the loader overlay
@@ -27,10 +27,14 @@ export default function Loader() {
         <div className="loader-overlay" style={loaderOverlayStyles}>
             <div style={loaderStyles}>
                 {/* Display a color ring loader */}
-                <InfinitySpin
-                    width="50"
-                    height="50"
+                <RotatingSquare
+                    visible={true}
+                    height="100"
+                    width="100"
                     color="#000"
+                    ariaLabel="rotating-square-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
                 />
             </div>
         </div>

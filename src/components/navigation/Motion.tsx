@@ -15,7 +15,7 @@ const MotionWrapper: React.FC<MotionWrapperProps> = ({ children, className }) =>
       y: 0,
       transition: {
         duration: 0.2,
-        ease: "easeInOut",
+        ease: "easeOut",
       },
     });
   }, [controls]);
@@ -27,7 +27,8 @@ const MotionWrapper: React.FC<MotionWrapperProps> = ({ children, className }) =>
       animate={controls}
       exit={{ opacity: 0, y: 130 }}
     >
-      {children}
+        {children}
+
     </motion.div>
   );
 };

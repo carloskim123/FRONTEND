@@ -18,7 +18,7 @@ const PostItem = ({ author, title, createdAt, updatedAt, img, content }) => {
 
   const renderShortenedContent = () => {
     // Set the maximum length for the displayed content
-    const maxLength = 60;
+    const maxLength = 40;
 
     // Check if the content length exceeds the maximum length
     if (content.length > maxLength) {
@@ -32,16 +32,14 @@ const PostItem = ({ author, title, createdAt, updatedAt, img, content }) => {
 
   return (
     <div
-      className={`cursor-pointer max-w-lg mx-auto bg-white rounded-none-none shadow-md overflow-hidden mb-8 relative ${
-        isHovered ? 'hovered' : ''
-      }`}
+      className={`cursor-pointer max-w-lg mx-auto bg-white rounded-none-none shadow-md overflow-hidden mb-8 relative ${isHovered ? 'hovered' : ''
+        }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <img
-        className={`w-[600px] h-64 object-cover transform transition-transform duration-300 ease-in-out ${
-          isHovered ? 'hover:scale-105' : ''
-        }`}
+        className={`w-[600px] h-64 object-cover transform transition-transform duration-300 ease-in-out ${isHovered ? 'hover:scale-105' : ''
+          }`}
         src={img}
         alt={title}
         onClick={openModal}
@@ -57,7 +55,7 @@ const PostItem = ({ author, title, createdAt, updatedAt, img, content }) => {
 
       {showModal && (
         <div onClick={closeModal} className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-[rgba(0,0,0,0.5)] backdrop-blur-[2px] bg-opacity-75 z-50">
-          <div className="bg-white p-6 w-[90%] h-[440px] max-w-[450px] rounded-none-none shadow-xl animate__animated animate__fadeIn fadeIn">
+          <div className="bg-white p-6 w-[90%] h-[450px] max-w-[450px] rounded-none-none shadow-xl animate__animated animate__fadeIn fadeIn">
             <div className="text-2xl font-semibold mb-4">{title}</div>
             <img className="w-full h-48 object-cover mb-4 rounded-none-none" src={img} alt={title} loading='lazy' />
             <div className="text-gray-700">

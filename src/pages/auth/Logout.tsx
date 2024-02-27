@@ -32,7 +32,6 @@ const Logout: React.FC = () => {
       Cookies.remove("profilePicture")
       Cookies.remove("bio");
 
-      localStorage.removeItem("savedPosts")
   };
 
   const handleCancel = () => {

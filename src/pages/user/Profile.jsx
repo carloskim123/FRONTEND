@@ -80,12 +80,7 @@ const Profile = ({
                 >
                   Logout
                 </button>
-                <button
-                  className="underline text-red-500 px-4 text-sm m:text-sm md:text-sm lg:text-lg  py-2 rounded-none-lg"
-                  onClick={() => navigate('/u/delete-account')}
-                >
-                  Delete Account
-                </button>
+               
               </div>
             </section>
           </div>

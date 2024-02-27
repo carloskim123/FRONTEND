@@ -63,6 +63,7 @@ function Discover() {
   }, [liquidAnimationControls]);
 
   return (
+    
     <MotionWrapper className="min-h-screen lg:m-auto md:mx-auto sm:mx-auto">
       <ToastContainer theme='light' autoClose={1500} position='top-right' closeOnClick/>
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/ReactToastify.min.css';
@@ -16,6 +16,7 @@ const PostDetail: React.FC = () => {
   const [post, setPost] = useState(null);
   const [success, setSuccess] = useState(false);
   const [message, setMessage] = useState(null);
+
 
   const navigate = useNavigate();
   const { title } = useParams();
@@ -94,6 +95,8 @@ const PostDetail: React.FC = () => {
     }
   }, [message]);
 
+
+
   return (
     <div className="container mx-auto mt-8 px-2">
       <ToastContainer theme="light" autoClose={3000} position="top-left" />
@@ -105,7 +108,7 @@ const PostDetail: React.FC = () => {
           className="max-w-3xl mx-auto  bg-white rounded-none-none overflow-hidden"
         >
           {post.creatorId === User._id && (
-            <div className="mb-2 font-bold italic">Owned by you</div>
+            <div className="mb-2 font-bold italic">Owned by you *save functionality is disabled for posts you own*</div>
           )}
           {post.creatorId !== User._id && (
             <div className="mb-2 font-bold italic">
@@ -124,7 +127,7 @@ const PostDetail: React.FC = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-md text-gray-700">
-                  Author: {post.author}
+                  Author: <Link className='underline' to={`/u/${post.author}`}>{post.author}</Link>
                 </p>
                 <p className="text-md text-gray-700">
                   Posted: {formatDate(post.createdAt)}
@@ -181,31 +184,31 @@ const PostDetail: React.FC = () => {
       )}
 
       {/* Delete Confirmation Modal */}
-<Modal
-  isOpen={showDeleteModal}
-  onRequestClose={handleCancelDelete}
-  contentLabel="Delete Confirmation"
-  className="h-[100%] fixed inset-0 flex items-center justify-center bg-[rgba(0,0,0,0.6)] backdrop-blur-[1px] bg-opacity-75"
->
-  <div className="bg-white p-6 rounded shadow-lg w-96 text-center">
-    <h2 className="text-2xl font-bold mb-4 text-gray-800">Confirm Delete</h2>
-    <p className="text-gray-700 mb-6">Are you sure you want to delete this post?</p>
-    <div className="flex justify-center">
-      <button
-        onClick={handleCancelDelete}
-        className="text-gray-700 hover:text-gray-800 font-bold px-4 py-2 rounded border border-gray-300 mr-2"
+      <Modal
+        isOpen={showDeleteModal}
+        onRequestClose={handleCancelDelete}
+        contentLabel="Delete Confirmation"
+        className="h-[100%] fixed inset-0 flex items-center justify-center bg-[rgba(0,0,0,0.6)] backdrop-blur-[1px] bg-opacity-75"
       >
-        Cancel
-      </button>
-      <button
-        onClick={handleConfirmDelete}
-        className="bg-red-500 hover:bg-red-600 text-white font-bold px-4 py-2 rounded"
-      >
-        Delete
-      </button>
-    </div>
-  </div>
-</Modal>
+        <div className="bg-white p-6 rounded shadow-lg w-96 text-center">
+          <h2 className="text-2xl font-bold mb-4 text-gray-800">Confirm Delete</h2>
+          <p className="text-gray-700 mb-6">Are you sure you want to delete this post?</p>
+          <div className="flex justify-center">
+            <button
+              onClick={handleCancelDelete}
+              className="text-gray-700 hover:text-gray-800 font-bold px-4 py-2 rounded border border-gray-300 mr-2"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleConfirmDelete}
+              className="bg-red-500 hover:bg-red-600 text-white font-bold px-4 py-2 rounded"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </Modal>
 
     </div>
   );

@@ -9,7 +9,7 @@ import "react-toastify/ReactToastify.min.css"
 const SignInPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(null); 
+  const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [loggingIn, setLoggingIn] = useState(false); // New state for tracking login status
 
@@ -37,10 +37,7 @@ const SignInPage = () => {
 
   useEffect(() => {
     if (auth) {
-       setTimeout(() => {
-          navigate("/");
-          window.location.reload();
-        }, 10);
+      navigate("/auth/login-success")
     }
 
     if (error) {
@@ -56,7 +53,7 @@ const SignInPage = () => {
 
   return (
     <MotionWrapper>
-      <ToastContainer theme='light' autoClose={1500} position='top-right' closeOnClick/>
+      <ToastContainer theme='light' autoClose={1500} position='top-right' closeOnClick />
 
       {/* Blurred background with dynamic text */}
       <div className={`flex w-full justify-center min-h-screen bg-cover bg-center bg-blur ${loggingIn ? 'bg-opacity-50' : ''}`}>

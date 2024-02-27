@@ -20,7 +20,6 @@ interface NewPost {
 const validationSchema = Yup.object().shape({
   title: Yup.string().required('Title is required'),
   content: Yup.string().required('Content is required'),
-  author: Yup.string().required('Author is required'),
   img: Yup.string().url('Invalid URL').required('Image URL is required'),
 });
 
@@ -33,7 +32,6 @@ type InputFieldType = {
 const inputFields: InputFieldType[] = [
   { label: 'Title', name: 'title', type: 'text' },
   { label: 'Content', name: 'content', type: 'textarea' },
-  { label: 'Author', name: 'author', type: 'text' },
   { label: 'Image URL', name: 'img', type: 'text' },
 ];
 
