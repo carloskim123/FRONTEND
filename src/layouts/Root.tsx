@@ -3,7 +3,7 @@ import Navbar from "../components/navigation/Navbar";
 import { Suspense, useEffect, useState } from "react";
 import Loader from "../components/navigation/Loader";
 import Footer from "../components/navigation/Footer";
-import ScrollToTop from "../helpers/ScrollToTop";
+import ScrollToTop from "../helpers/PullToRefresh";
 
 
 const OutletComponent = () => {

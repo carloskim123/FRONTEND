@@ -23,6 +23,7 @@ import EditSuccess from "./pages/user/EditSuccess"
 import LoginSuccessPage from "./pages/auth/LoginSuccess"
 import StateAllocated from "./pages/auth/StateAllocated"
 import Updates from "./pages/updates/Updates"
+import PullToRefresh from "./helpers/PullToRefresh"
 
 /**
  * App is the root component that renders the React Router routes 
@@ -83,8 +84,10 @@ function App() {
         <Route path="/auth/login-success" Component={LoginSuccessPage} />
         <Route path="/auth/state-allocated" Component={StateAllocated} />
 
-        {/* Updates */}
+        {/* Local */}
         <Route path="/updates" Component={Updates} />
+        <Route path="/testing" Component={PullToRefresh} />
+
 
       </Route>
     )

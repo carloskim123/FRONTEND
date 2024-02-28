@@ -76,12 +76,7 @@ const PostDetail: React.FC = () => {
     }, 2500);
   };
 
-  const copyUrl = async () => {
-    const currentUrl = window.location.href;
-    await navigator.clipboard.writeText(currentUrl);
 
-    toast.info('Url copied to clipboard');
-  };
 
   useEffect(() => {
     if (success) {
@@ -137,12 +132,6 @@ const PostDetail: React.FC = () => {
                 </p>
               </div>
               <div className="flex md:flex-row lg:flex-row sm:flex-col flex-col gap-3">
-                <button
-                  onClick={copyUrl}
-                  className="bg-blue-500 hover:bg-blue-600 dark:text-white font-bold py-2 px-4 "
-                >
-                  Url
-                </button>
                 {post.creatorId !== User._id && (
                   <>
                     <button

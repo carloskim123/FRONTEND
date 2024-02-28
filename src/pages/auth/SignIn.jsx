@@ -5,6 +5,7 @@ import { LoginUser } from '../../../services/auth/authService';
 import AuthContext from '../../context/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/ReactToastify.min.css"
+import { User } from '../../../utils/constants';
 
 const SignInPage = () => {
   const [email, setEmail] = useState('');
@@ -35,9 +36,13 @@ const SignInPage = () => {
     }
   };
 
+
+
+
   useEffect(() => {
     if (auth) {
-      navigate("/auth/login-success")
+      localStorage.setItem("shouldGetWelcomeNotification", 'true')
+      window.location.reload();
     }
 
     if (error) {

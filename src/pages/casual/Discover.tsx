@@ -26,17 +26,21 @@ function Discover() {
     }
   }
 
+
+
+
+
   useEffect(() => {
     if (!auth) {
       navigate("/auth/sign-in");
     }
+    
   }, [auth, navigate]);
 
   useEffect(() => {
     const fetchLatestPosts = async () => {
       try {
         const latestPosts = await GetLatestPosts(setLatestPosts);
-        console.log("Feed generated")
         return latestPosts;
       } catch (error) {
         console.error('Error fetching latest posts:', error);
@@ -44,7 +48,13 @@ function Discover() {
     };
 
     fetchLatestPosts();
+
+
   }, []);
+
+
+
+
 
   useEffect(() => {
     const liquidEffect = async () => {
@@ -52,7 +62,7 @@ function Discover() {
         backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
         backgroundColor: ['#00c6fb', '#005bea', '#ff6b6b'],
         transition: {
-        duration: 4,
+          duration: 4,
           repeat: Infinity,
           repeatType: 'reverse',
         },
@@ -63,9 +73,9 @@ function Discover() {
   }, [liquidAnimationControls]);
 
   return (
-    
+
     <MotionWrapper className="min-h-screen lg:m-auto md:mx-auto sm:mx-auto">
-      <ToastContainer theme='light' autoClose={1500} position='top-right' closeOnClick/>
+      <ToastContainer theme='light' autoClose={1500} position='top-right' closeOnClick />
 
       <section className="px-4 py-8 relative">
         <style>
@@ -86,7 +96,7 @@ function Discover() {
             }
           `}
         </style>
-        <Greeting/>
+        <Greeting />
         <NewPostButton />
         <RefreshButton handleRefresh={handleRefresh} />
 
@@ -95,8 +105,8 @@ function Discover() {
             latestPosts.map(post => (
               <PostItem key={post._id} author={post.author} title={post.title} img={post.img} content={post.content} createdAt={post.createdAt} updatedAt={post.updatedAt} />
             ))) : (
-              <div className='text-2xl'>No posts at the moment</div>
-            )
+            <div className='text-2xl'>No posts at the moment</div>
+          )
           }
         </div>
       </section>

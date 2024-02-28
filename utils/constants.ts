@@ -27,14 +27,12 @@ export const Routes: RouteInterface[] = [
         path: "/u/saved",
         pathname: "Saved"
     },
-      {
-        path: "/updates",
-        pathname: "Updates"
-    }
-    ,  {
-        path: "/auth/privacy-statement",
-        pathname: "Privacy Statement"
-    }
+       {
+        path: "/testing",
+        pathname: "Beta"
+    },
+
+
 ]
 
 interface UserInterface {

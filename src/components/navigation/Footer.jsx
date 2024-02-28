@@ -31,6 +31,34 @@ const Footer = () => {
 
   };
 
+  const footerLinks = [
+    {
+      navigationType: 'external',
+      pathname: 'Facebook',
+      path: 'https://www.facebook.com/profile.php?id=100089910465149'
+    },
+    {
+      navigationType: 'external',
+      pathname: 'Twitter',
+      path: 'https://twitter.com/KimKimkirui79'
+    },
+    {
+      navigationType: 'external',
+      pathname: 'Instagram',
+      path: 'https://www.instagram.com/somedev99/'
+    },
+    {
+      navigationType: 'internal',
+      pathname: 'Privacy Policy',
+      path: '/auth/privacy-policy'
+    },
+    {
+      navigationType: 'internal',
+      pathname: 'Updates',
+      path: '/updates'
+    },
+  ];
+
   return (
     <div>
       <ToastContainer theme="light" autoClose={3000} position="top-left" />
@@ -45,18 +73,17 @@ const Footer = () => {
 
           <p className="text-3xl font-semibold">Connect with Us</p>
           <div className="flex justify-center mt-2">
-            <a target="_blank" href="https://twitter.com/KimKimkirui7" className="mx-2 hover:text-gray-500">
-              Twitter
-            </a>
-            <a target="_blank" href="https://www.facebook.com/profile.php?id=100089910465149" className="mx-2 hover:text-gray-500">
-              Facebook
-            </a>
-            <a target="_blank" href="https://www.instagram.com/somedev99/" className="mx-2 hover:text-gray-500">
-              Instagram
-            </a>
-            <Link to={"/auth/privacy-statement"} className="mx-2 hover:text-gray-500">
-              Privacy Statement
-            </Link>
+            {footerLinks.map((link, index) => (
+              link.navigationType === 'internal' ? (
+                <Link className="px-2 hover:underline" key={index} to={link.path}>
+                  {link.pathname}
+                </Link>
+              ) : link.navigationType === 'external' ? (
+                <a className="px-2 hover:underline" key={index} href={link.path} target="_blank" rel="noopener noreferrer">
+                  {link.pathname}
+                </a>
+              ) : null
+            ))}
           </div>
           <p className="text-sm mt-4 mb-2 md:mb-0 md:mr-2">Subscribe to our newsletter for updates.</p>
 
