@@ -81,7 +81,7 @@ const Navbar = () => {
 
 
   return (
-    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-10 backdrop-filter backdrop-blur-md bg-[rgba(255,255,255,0.9)] p-4 ">
+    <nav ref={navRef} className=" backdrop-filter backdrop-blur-lg bg-[rgba(255,255,255,0.9)] p-4 ">
       <div className="max-w-full flex">
 
         <Link to={"/"} className="text-xl font-semibold flex gap-4 mr-auto ">

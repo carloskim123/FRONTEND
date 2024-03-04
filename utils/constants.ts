@@ -11,6 +11,7 @@ export const Routes: RouteInterface[] = [
         path: "/",
         pathname: "Discover"
     },
+ 
     {
         path: "/auth/sign-in",
         pathname: "Sign In"

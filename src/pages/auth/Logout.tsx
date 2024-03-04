@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
 import { useContext } from "react";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import AuthContext from "../../context/AuthContext";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import Notification from "../../helpers/Notification";
 
 const Logout: React.FC = () => {
   const { setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
+  const notify = Notification();
 
   const handleLogout = () => {
     // Reset auth status from true to false
@@ -17,7 +17,7 @@ const Logout: React.FC = () => {
     const username = Cookies.get("username");
    
     // Show toast notification
-    toast.success(`${username} has been logged out!!`);
+    notify.displaySuccess(`${username} has been logged out!!`);
 
     setTimeout(() => {
        navigate("/auth/sign-in");
@@ -66,7 +66,6 @@ const Logout: React.FC = () => {
           </button>
         </div>
       </div>
-      <ToastContainer theme="light" autoClose={1000} />
     </motion.div>
   );
 };

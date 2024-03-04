@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/ReactToastify.min.css';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/ReactToastify.min.css';
 import Modal from 'react-modal';
 import { DeletePost, GetPost } from '../../../services/post/postService';
 import { User } from '../../../utils/constants';
 import { formatDate } from '../../../utils/helpers';
 import { RemoveFromSavedPosts, SavePost } from '../../../services/user/userService';
+import { UrlGenerator } from '../../helpers/UrlGenerator';
+import Notification from '../../helpers/Notification';
 
 // Make sure to set appElement to avoid accessibility issues
 Modal.setAppElement('#root');
@@ -16,6 +18,9 @@ const PostDetail: React.FC = () => {
   const [post, setPost] = useState(null);
   const [success, setSuccess] = useState(false);
   const [message, setMessage] = useState(null);
+  const [url, setUrl] = useState("");
+  const notify = Notification();
+
 
 
   const navigate = useNavigate();
@@ -30,7 +35,7 @@ const PostDetail: React.FC = () => {
     try {
       await SavePost(post._id, setMessage);
     } catch (error) {
-      toast.error(error.message);
+      notify.displayError(error.message);
     }
   };
 
@@ -38,7 +43,7 @@ const PostDetail: React.FC = () => {
     try {
       await RemoveFromSavedPosts(post._id, setMessage);
     } catch (error) {
-      toast.error(error.message);
+      notify.displayError(error.message);
     }
   };
 
@@ -47,7 +52,7 @@ const PostDetail: React.FC = () => {
   };
 
   const openFromSource = () => {
-    toast.info('Image is about to be opened in a new tab');
+    notify.displayInfo('Image is about to be opened in a new tab');
 
     setTimeout(() => {
       window.open(post?.img, '_blank')?.focus();
@@ -76,17 +81,24 @@ const PostDetail: React.FC = () => {
     }, 2500);
   };
 
+  const handleCopyUrl = async () => {
+    UrlGenerator("post", setUrl, post.title)
+
+    await window.navigator.clipboard.writeText(url);
+
+    notify.displayInfo("Url copied")
+  }
 
 
   useEffect(() => {
     if (success) {
-      toast.success('Post Deleted successfully');
+      notify.displaySuccess('Post Deleted successfully');
     }
   }, [success]);
 
   useEffect(() => {
     if (message) {
-      toast.info(message);
+      notify.displayInfo(message);
     }
   }, [message]);
 
@@ -94,7 +106,7 @@ const PostDetail: React.FC = () => {
 
   return (
     <div className="container mx-auto mt-8 px-2">
-      <ToastContainer theme="light" autoClose={3000} position="top-left" />
+      {/* <ToastContainer theme="light" autoClose={3000} position="top-left" /> */}
       {post ? (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -132,6 +144,12 @@ const PostDetail: React.FC = () => {
                 </p>
               </div>
               <div className="flex md:flex-row lg:flex-row sm:flex-col flex-col gap-3">
+                <button
+                  onClick={handleCopyUrl}
+                  className={`bg-green-700 hover:bg-green-800 dark:text-white font-bold py-2 px-4 `}
+                >
+                  Copy
+                </button>
                 {post.creatorId !== User._id && (
                   <>
                     <button

@@ -4,9 +4,10 @@ import { GetPost, UpdatePost } from '../../../services/post/postService';
 import { motion } from 'framer-motion';
 import { User } from '../../../utils/constants';
 import AuthContext from '../../context/AuthContext';
-import { ToastContainer, toast } from 'react-toastify';
-import "react-toastify/ReactToastify.min.css";
+// import { ToastContainer, toast } from 'react-toastify';
+// import "react-toastify/ReactToastify.min.css";
 import { Toaster } from 'react-hot-toast';
+import Notification from '../../helpers/Notification';
 
 const EditPost = () => {
   const { auth } = useContext(AuthContext)
@@ -14,6 +15,7 @@ const EditPost = () => {
   const [post, setPost] = useState(null);
   const [updatedPost, setUpdatedPost] = useState({});
   const navigate = useNavigate();
+  const notify = Notification();
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -65,7 +67,7 @@ const EditPost = () => {
     // Call the UpdatePost service function with updated data
     await UpdatePost(post._id, updatedPost);
 
-    toast.info('Post updated');
+    notify.displayInfo('Post updated');
     setTimeout(() => {
       navigate(-2);
     }, 1500);
@@ -76,7 +78,7 @@ const EditPost = () => {
 
   return (
     <div className="w-screen-lg container mx-auto mt-8 px-4">
-      <ToastContainer theme='light' autoClose={1000} position='top-left' />
+      {/* <ToastContainer theme='light' autoClose={1000} position='top-left' /> */}
 
 
       <>

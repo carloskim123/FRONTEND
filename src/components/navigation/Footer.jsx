@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/ReactToastify.min.css';
 import { Link } from "react-router-dom";
 import { User } from "../../../utils/constants";
+import Notification from "../../helpers/Notification";
 
 const Footer = () => {
   const [emailValue, setEmailValue] = useState("");
+  const toast = Notification();
 
   const notify = () => {
-    toast.info("Newsletter subscription under review");
+    toast.displaySuccess("Newsletter subscription under review");
   };
 
   const handleSubscribe = (event) => {
@@ -61,7 +61,6 @@ const Footer = () => {
 
   return (
     <div>
-      <ToastContainer theme="light" autoClose={3000} position="top-left" />
 
       <motion.footer
         className="bg-white py-4 text-black text-center mt-[10rem]"

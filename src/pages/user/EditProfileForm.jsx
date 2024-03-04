@@ -5,10 +5,11 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { UpdateUser } from '../../../services/user/userService';
 import { User } from '../../../utils/constants';
-import "react-toastify/ReactToastify.min.css";
-import { ToastContainer, toast } from 'react-toastify';
+// import "react-toastify/ReactToastify.min.css";
+// import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import MotionWrapper from '../../components/navigation/Motion';
+import Notification from '../../helpers/Notification';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -32,6 +33,8 @@ const EditProfileForm = () => {
     age: '' || User.age,
   });
 
+  const notify = Notification();
+
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -41,16 +44,17 @@ const EditProfileForm = () => {
 
   const handleSubmit = async () => {
     await UpdateUser(editedInfo);
-
-
-    navigate('/u/profile/edit-success')
+    notify.displayInfo("Profile updated");
+    setTimeout(() => {
+      window.location.reload()
+    }, 1000);
 
   };
 
 
   return (
     <MotionWrapper className="max-w-lg mx-auto p-6">
-      <ToastContainer theme='light' autoClose={1500} position='top-right' closeOnClick />
+      {/* <ToastContainer theme='light' autoClose={1500} position='top-right' closeOnClick /> */}
 
       <h2 className="text-3xl font-semibold mb-4">Edit Information</h2>
       <Formik

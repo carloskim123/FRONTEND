@@ -3,23 +3,24 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAnimation } from 'framer-motion';
 import MotionWrapper from '../../components/navigation/Motion';
-import { ToastContainer, toast } from 'react-toastify';
 import { GetLatestPosts } from '../../../services/post/postService';
 import AuthContext from '../../context/AuthContext';
 import PostItem from '../../components/discover/PostItem';
 import { NewPostButton, RefreshButton } from '../../components/discover/Fixed';
 import { Greeting } from '../../components/discover/Greeting';
+import Notification from '../../helpers/Notification';
 
 function Discover() {
   const { auth } = useContext(AuthContext);
   const navigate = useNavigate();
   const [latestPosts, setLatestPosts] = useState([]);
   const liquidAnimationControls = useAnimation();
+  const notify = Notification();
 
   const handleRefresh = async () => {
     try {
       const latestPosts = await GetLatestPosts(setLatestPosts);
-      toast.info("Refreshed!");
+      notify.displayInfo("Refreshed")
       return latestPosts;
     } catch (error) {
       console.error('Error fetching latest posts:', error);
@@ -34,7 +35,7 @@ function Discover() {
     if (!auth) {
       navigate("/auth/sign-in");
     }
-    
+
   }, [auth, navigate]);
 
   useEffect(() => {
@@ -51,9 +52,6 @@ function Discover() {
 
 
   }, []);
-
-
-
 
 
   useEffect(() => {
@@ -75,7 +73,6 @@ function Discover() {
   return (
 
     <MotionWrapper className="min-h-screen lg:m-auto md:mx-auto sm:mx-auto">
-      <ToastContainer theme='light' autoClose={1500} position='top-right' closeOnClick />
 
       <section className="px-4 py-8 relative">
         <style>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import "react-toastify/ReactToastify.min.css"
 import { Link } from 'react-router-dom';
 import { formatDate } from '../../../utils/helpers';
 

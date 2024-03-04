@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { motion, useMotionValue, useTransform, useAnimation } from 'framer-motion'
 import MotionWrapper from '../../components/navigation/Motion'
 import { User } from '../../../utils/constants'
-import { ToastContainer, toast } from 'react-toastify'
-import "react-toastify/ReactToastify.min.css"
+// import { ToastContainer, toast } from 'react-toastify'
+// import "react-toastify/ReactToastify.min.css"
 import { DelAccount, UpdateUser } from '../../../services/user/userService'
 import { GetUsersPosts } from '../../../services/post/postService'
 import PostItem from '../../components/discover/PostItem'
@@ -46,7 +46,7 @@ const Profile = ({
 
   return (
     <MotionWrapper>
-      <ToastContainer theme='light' autoClose={1500} position='top-right' closeOnClick />
+      {/* <ToastContainer theme='light' autoClose={1500} position='top-right' closeOnClick /> */}
 
       <div className={`flex flex-col min-h-screen mb-[100px]  `}>
         <motion.div

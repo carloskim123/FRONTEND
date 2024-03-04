@@ -1,4 +1,4 @@
-import { Route, RouterProvider,  createMemoryRouter, createRoutesFromElements } from "react-router-dom"
+import { Route, RouterProvider, createBrowserRouter, createMemoryRouter, createRoutesFromElements } from "react-router-dom"
 import Root from "./layouts/Root"
 import Discover from "./pages/casual/Discover"
 import SignUpPage from "./pages/auth/SignUp"
@@ -22,8 +22,10 @@ import EditProfileForm from "./pages/user/EditProfileForm"
 import EditSuccess from "./pages/user/EditSuccess"
 import LoginSuccessPage from "./pages/auth/LoginSuccess"
 import StateAllocated from "./pages/auth/StateAllocated"
-import Updates from "./pages/updates/Updates"
+import Updates from "./pages/beta/Updates"
 import PullToRefresh from "./helpers/PullToRefresh"
+import NotFoundPage from "./pages/casual/404"
+import MarkdownSupport from "./pages/beta/MarkdownSupport"
 
 /**
  * App is the root component that renders the React Router routes 
@@ -55,7 +57,7 @@ function App() {
 
 
 
-  const router = createMemoryRouter(
+  const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" Component={Root} >
 
@@ -64,12 +66,12 @@ function App() {
         <Route path="/u/profile" element={<Profile />} />
         <Route path="/u/profile/edit" element={<EditProfileForm />} />
         <Route path="/u/profile/edit-success" element={<EditSuccess />} />
-
         <Route path="/u/:username" element={<SpecUProfile />} />
         <Route path="/users" element={<DisplayUsers />} />
         <Route path="/u/saved" element={<Favorites />} />
         <Route path="/u/delete-account" element={<DeleteAccount />} />
         <Route path="/u/last-resort" element={<LastResort />} />
+
         {/* Posts */}
         <Route path="/post/new" element={<NewPostPage />} />
         <Route path="/post/:title" element={<PostInDetail />} />
@@ -86,6 +88,8 @@ function App() {
 
         {/* Local */}
         <Route path="/updates" Component={Updates} />
+        <Route path="*" Component={NotFoundPage} />
+        <Route path="/beta/md-support" Component={MarkdownSupport} />
         <Route path="/testing" Component={PullToRefresh} />
 
 

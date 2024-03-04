@@ -8,6 +8,7 @@ import { clickToCopy } from '../../../utils/helpers';
 import PostItem from '../../components/discover/PostItem';
 import { GetUsersPosts } from '../../../services/post/postService';
 import MotionWrapper from '../../components/navigation/Motion';
+import Notification from '../../helpers/Notification';
 
 const SpecUProfile = () => {
   const [userData, setUserData] = useState(null);
@@ -17,6 +18,7 @@ const SpecUProfile = () => {
   const controls = useAnimation();
   const y = useMotionValue(0);
   const elementRef = useRef();
+  const notify = Notification();
 
   const handleGetUserPosts = async () => {
     try {
@@ -24,8 +26,8 @@ const SpecUProfile = () => {
       const posts = await GetUsersPosts(setUsersPosts, userData?._id);
 
       // Check the length of posts immediately
-      if (posts.length <= 0) {
-        toast.info("User has no posts");
+      if (!posts.length) {
+        notify.displayInfo("User has no posts");
       }
 
     } catch (error) {
@@ -49,7 +51,7 @@ const SpecUProfile = () => {
 
   useEffect(() => {
     if (elementRef.current) {
-      clickToCopy(elementRef.current, toast);
+      clickToCopy(elementRef.current, notify);
     }
   }, []);
 
