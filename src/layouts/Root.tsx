@@ -1,9 +1,8 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/navigation/Navbar";
-import { Suspense, useContext, useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Loader from "../components/navigation/Loader";
 import Footer from "../components/navigation/Footer";
-import AuthContext from "../context/AuthContext";
 
 
 const OutletComponent = () => {
@@ -16,7 +15,6 @@ const OutletComponent = () => {
 
 function Root() {
   const [isLoading, setIsLoading] = useState(true);
-  const { auth } = useContext(AuthContext);
   useEffect(() => {
     setTimeout(() => {
 
@@ -35,7 +33,7 @@ function Root() {
         {isLoading ? <Loader /> : <OutletComponent />}
       </Suspense>
 
-      {/* <Footer /> */}
+      <Footer />
     </>
   )
 }
