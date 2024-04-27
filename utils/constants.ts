@@ -22,13 +22,14 @@ export const Routes: RouteInterface[] = [
     },
     {
         path: "/users",
-        pathname: "View All Users"
+        pathname: "View Users"
     },
     {
         path: "/u/saved",
         pathname: "Saved"
     },
-       {
+     
+     {
         path: "/testing",
         pathname: "Beta"
     },
